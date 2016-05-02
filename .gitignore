@@ -183,6 +183,7 @@ win/Projects/*/Release
 win/.vs/
 win/packages
 win-alt-build
+win/build
 
 # All those help files
 help/manual*
