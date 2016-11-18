@@ -1,8 +1,8 @@
 diff --git a/build/msw/wx_config.props b/build/msw/wx_config.props
-index 572a210..70c2d74 100644
+index 572a210..060ecab 100644
 --- a/build/msw/wx_config.props
 +++ b/build/msw/wx_config.props
-@@ -3,10 +3,13 @@
+@@ -3,10 +3,15 @@
    <PropertyGroup Label="Configuration">
      <UseOfMfc>false</UseOfMfc>
      <CharacterSet>Unicode</CharacterSet>
@@ -12,8 +12,10 @@ index 572a210..70c2d74 100644
      <PlatformToolset Condition="'$(VisualStudioVersion)' == '11.0'">v110</PlatformToolset>
      <PlatformToolset Condition="'$(VisualStudioVersion)' == '12.0'">v120</PlatformToolset>
      <PlatformToolset Condition="'$(VisualStudioVersion)' == '14.0'">v140</PlatformToolset>
++    <PlatformToolset Condition="'$(VisualStudioVersion)' == '15.0'">v141</PlatformToolset>
 +    <PlatformToolset Condition="'$(VisualStudioVersion)' == '12.0' And '$(Platform)'=='Win32' ">v120_xp</PlatformToolset>
 +    <PlatformToolset Condition="'$(VisualStudioVersion)' == '14.0' And '$(Platform)'=='Win32' ">v140_xp</PlatformToolset>
++    <PlatformToolset Condition="'$(VisualStudioVersion)' == '15.0' And '$(Platform)'=='Win32' ">v141_xp</PlatformToolset>
 +    <WholeProgramOptimization Condition="'$(Configuration)'=='DLL Release' Or '$(Configuration)'=='Release'">true</WholeProgramOptimization>
    </PropertyGroup>
  </Project>
@@ -102,16 +104,3 @@ index 0000000..70ecf60
 +    </Link>
 +  </ItemDefinitionGroup>
 +</Project>
-diff --git a/include/wx/msw/setup0.h b/include/wx/msw/setup0.h
-index d005bc3..8ade54c 100644
---- a/include/wx/msw/setup0.h
-+++ b/include/wx/msw/setup0.h
-@@ -1560,7 +1560,7 @@
- // SDK components manually, you need to change this setting.
- //
- // Recommended setting: 1
--#if defined(_MSC_VER) && _MSC_VER >= 1700
-+#if defined(_MSC_VER) && _MSC_VER >= 1700 && !defined(_USING_V110_SDK71_)
-     #define wxUSE_WINRT 1
- #else
-     #define wxUSE_WINRT 0

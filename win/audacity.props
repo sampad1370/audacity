@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Label="Audacity">
-    <!-- We default to v120 (VS2013), but use v140 if a later version is detected. -->
+    <!-- We default to v120 (VS2013), but use v140 or v141 if a later version is detected. -->
     <BaseAudacityPlatformToolset>v120</BaseAudacityPlatformToolset>
     <BaseAudacityPlatformToolset Condition="'$(VisualStudioVersion)' &gt; '12.0'">v140</BaseAudacityPlatformToolset>
+    <BaseAudacityPlatformToolset Condition="'$(VisualStudioVersion)' &gt; '14.0'">v141</BaseAudacityPlatformToolset>
     <!-- Only enable XP support for 32-bit release builds. -->
     <AudacityPlatformPostfix Condition="'$(Configuration)|$(Platform)'=='Release|Win32' Or '$(Configuration)|$(Platform)'=='Static Release|Win32'">_xp</AudacityPlatformPostfix>
     <AudacityPlatformToolset>$(BaseAudacityPlatformToolset)$(AudacityPlatformPostfix)</AudacityPlatformToolset>
@@ -21,5 +22,6 @@
 
     <WXWIN Condition=" '$(WXWIN_VS2013)' != '' And Exists('$(WXWIN_VS2013)\build\msw') And '$(VisualStudioVersion)' == '12.0'">$(WXWIN_VS2013)</WXWIN>
     <WXWIN Condition=" '$(WXWIN_VS2015)' != '' And Exists('$(WXWIN_VS2015)\build\msw') And '$(VisualStudioVersion)' == '14.0'">$(WXWIN_VS2015)</WXWIN>
+    <WXWIN Condition=" '$(WXWIN_VS2017)' != '' And Exists('$(WXWIN_VS2017)\build\msw') And '$(VisualStudioVersion)' == '15.0'">$(WXWIN_VS2017)</WXWIN>
   </PropertyGroup>
 </Project>
