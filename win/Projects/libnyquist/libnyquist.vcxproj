@@ -52,15 +52,23 @@
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\shared.props" />
+    <Import Project="..\..\debug.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\shared.props" />
+    <Import Project="..\..\debug.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\shared.props" />
+    <Import Project="..\..\release.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\shared.props" />
+    <Import Project="..\..\release.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
@@ -87,20 +95,12 @@
       <Command />
     </PreBuildEvent>
     <ClCompile>
-      <Optimization>MaxSpeed</Optimization>
       <AdditionalIncludeDirectories>..\..\..\lib-src\libnyquist;..\..\..\lib-src\libnyquist\nyquist;..\..\..\lib-src\libnyquist\nyquist\cmt;..\..\..\lib-src\libnyquist\nyquist\ffts\src;..\..\..\lib-src\libnyquist\nyquist\nyqsrc;..\..\..\lib-src\libnyquist\nyquist\nyqstk;..\..\..\lib-src\libnyquist\nyquist\nyqstk\include;..\..\..\lib-src\libnyquist\nyquist\snd;..\..\..\lib-src\libnyquist\nyquist\tran;..\..\..\lib-src\libnyquist\nyquist\sys\win\msvc;..\..\..\lib-src\libnyquist\nyquist\xlisp;..\..\..\lib-src\libnyquist\nyquist\win;..\libsndfile;..\..\..\lib-src\portaudio-v19\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>NDEBUG;WIN32;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
       <PrecompiledHeader />
-      <WarningLevel>Level3</WarningLevel>
       <CompileAs>Default</CompileAs>
       <DisableSpecificWarnings>4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <FloatingPointModel>Fast</FloatingPointModel>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -109,21 +109,13 @@
       </Command>
     </PreBuildEvent>
     <ClCompile>
-      <Optimization>MaxSpeed</Optimization>
       <AdditionalIncludeDirectories>..\..\..\lib-src\libnyquist;..\..\..\lib-src\libnyquist\nyquist;..\..\..\lib-src\libnyquist\nyquist\cmt;..\..\..\lib-src\libnyquist\nyquist\ffts\src;..\..\..\lib-src\libnyquist\nyquist\nyqsrc;..\..\..\lib-src\libnyquist\nyquist\nyqstk;..\..\..\lib-src\libnyquist\nyquist\nyqstk\include;..\..\..\lib-src\libnyquist\nyquist\snd;..\..\..\lib-src\libnyquist\nyquist\tran;..\..\..\lib-src\libnyquist\nyquist\sys\win\msvc;..\..\..\lib-src\libnyquist\nyquist\xlisp;..\..\..\lib-src\libnyquist\nyquist\win;..\libsndfile;..\..\..\lib-src\portaudio-v19\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>NDEBUG;WIN32;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
       <PrecompiledHeader>
       </PrecompiledHeader>
-      <WarningLevel>Level3</WarningLevel>
       <CompileAs>Default</CompileAs>
       <DisableSpecificWarnings>4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <FloatingPointModel>Fast</FloatingPointModel>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -131,19 +123,13 @@
       <Command />
     </PreBuildEvent>
     <ClCompile>
-      <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>..\..\..\lib-src\libnyquist;..\..\..\lib-src\libnyquist\nyquist;..\..\..\lib-src\libnyquist\nyquist\cmt;..\..\..\lib-src\libnyquist\nyquist\ffts\src;..\..\..\lib-src\libnyquist\nyquist\nyqsrc;..\..\..\lib-src\libnyquist\nyquist\nyqstk;..\..\..\lib-src\libnyquist\nyquist\nyqstk\include;..\..\..\lib-src\libnyquist\nyquist\snd;..\..\..\lib-src\libnyquist\nyquist\tran;..\..\..\lib-src\libnyquist\nyquist\sys\win\msvc;..\..\..\lib-src\libnyquist\nyquist\xlisp;..\..\..\lib-src\libnyquist\nyquist\win;..\libsndfile;..\..\..\lib-src\portaudio-v19\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;WIN32;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <StringPooling>true</StringPooling>
-      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
       <PrecompiledHeader />
-      <WarningLevel>Level3</WarningLevel>
       <CompileAs>Default</CompileAs>
       <DisableSpecificWarnings>4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -152,20 +138,14 @@
       </Command>
     </PreBuildEvent>
     <ClCompile>
-      <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>..\..\..\lib-src\libnyquist;..\..\..\lib-src\libnyquist\nyquist;..\..\..\lib-src\libnyquist\nyquist\cmt;..\..\..\lib-src\libnyquist\nyquist\ffts\src;..\..\..\lib-src\libnyquist\nyquist\nyqsrc;..\..\..\lib-src\libnyquist\nyquist\nyqstk;..\..\..\lib-src\libnyquist\nyquist\nyqstk\include;..\..\..\lib-src\libnyquist\nyquist\snd;..\..\..\lib-src\libnyquist\nyquist\tran;..\..\..\lib-src\libnyquist\nyquist\sys\win\msvc;..\..\..\lib-src\libnyquist\nyquist\xlisp;..\..\..\lib-src\libnyquist\nyquist\win;..\libsndfile;..\..\..\lib-src\portaudio-v19\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;WIN32;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <StringPooling>true</StringPooling>
-      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
       <PrecompiledHeader>
       </PrecompiledHeader>
-      <WarningLevel>Level3</WarningLevel>
       <CompileAs>Default</CompileAs>
       <DisableSpecificWarnings>4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
