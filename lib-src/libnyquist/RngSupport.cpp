@@ -62,7 +62,7 @@ static vector<unsigned int> CreateRootSeedVector()
     // Protect against a broken random_device
     auto timestamp = std::chrono::high_resolution_clock::now().time_since_epoch().count();
 
-    seed_data.push_back(static_cast<unsigned int>(timestamp));
+    seed_data.push_back(static_cast<unsigned int>(timestamp) & 0xffffffff);
     seed_data.push_back(static_cast<unsigned int>(timestamp >> 32));
 
     static atomic<int> counter;

@@ -3447,7 +3447,7 @@ void VSTEffect::SaveFXB(const wxFileName & fn)
 
    wxMemoryBuffer buf;
    wxInt32 subType;
-   void *chunkPtr;
+   void *chunkPtr = nullptr;
    int chunkSize;
    int dataSize = 148;
    wxInt32 tab[8];
@@ -3552,7 +3552,7 @@ void VSTEffect::SaveFXP(const wxFileName & fn)
 void VSTEffect::SaveFXProgram(wxMemoryBuffer & buf, int index)
 {
    wxInt32 subType;
-   void *chunkPtr;
+   void *chunkPtr = nullptr;
    int chunkSize;
    int dataSize = 48;
    char progName[28];
