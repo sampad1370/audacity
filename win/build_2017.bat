@@ -2,33 +2,56 @@
 
 md "%~dp0build\"
 
+@setlocal
+
 call "%VS150COMNTOOLS%VsDevCmd.bat"
 @if %errorlevel% neq 0 goto errorexit
 
-cd "%~dp0"
+call :dobuild Win32 v141_xp
 @if %errorlevel% neq 0 goto errorexit
 
-msbuild /m /p:Configuration=Debug,Platform=x64 /t:Build /consoleLoggerParameters:Summary /verbosity:minimal /fileLogger /fileLoggerParameters:Summary;Append;Verbosity=normal;LogFile=%~dp0build\audacity_d_x64_2017.log audacity.sln
+@endlocal
+@setlocal
+
+call "%VS150COMNTOOLS%VsDevCmd.bat" -arch=x64 -host_arch=x64
 @if %errorlevel% neq 0 goto errorexit
 
-msbuild /m /p:Configuration=Debug,Platform=Win32 /t:Build /consoleLoggerParameters:Summary /verbosity:minimal /fileLogger /fileLoggerParameters:Summary;Append;Verbosity=normal;LogFile=%~dp0build\audacity_d_win32_2017.log audacity.sln
-@if %errorlevel% neq 0 goto errorexit
-
-msbuild /m /p:Configuration=Release,Platform=x64 /t:Build /consoleLoggerParameters:Summary /verbosity:minimal /fileLogger /fileLoggerParameters:Summary;Append;Verbosity=normal;LogFile=%~dp0build\audacity_x64_2017.log audacity.sln
-@if %errorlevel% neq 0 goto errorexit
-
-msbuild /m /p:Configuration=Release,Platform=Win32 /t:Build /consoleLoggerParameters:Summary /verbosity:minimal /fileLogger /fileLoggerParameters:Summary;Append;Verbosity=normal;LogFile=%~dp0build\audacity_win32_2017.log audacity.sln
-@if %errorlevel% neq 0 goto errorexit
-
-msbuild /m /p:Configuration="Static Release",Platform=x64 /t:Build /consoleLoggerParameters:Summary /verbosity:minimal /fileLogger /fileLoggerParameters:Summary;Append;Verbosity=normal;LogFile=%~dp0build\audacity_s_x64_2017.log audacity.sln
-@if %errorlevel% neq 0 goto errorexit
-
-msbuild /m /p:Configuration="Static Release",Platform=Win32 /t:Build /consoleLoggerParameters:Summary /verbosity:minimal /fileLogger /fileLoggerParameters:Summary;Append;Verbosity=normal;LogFile=%~dp0build\audacity_s_win32_2017.log audacity.sln
+call :dobuild x64 v141
 @if %errorlevel% neq 0 goto errorexit
 
 @endlocal
 @exit /b 0
 
+:dobuild
+
+cd "%~dp0"
+@if %errorlevel% neq 0 goto errorexit
+
+call :run_msbuild "Debug" %1 %2
+@if %errorlevel% neq 0 goto errorexit
+
+call :run_msbuild "Static Debug" %1 %2
+@if %errorlevel% neq 0 goto errorexit
+
+call :run_msbuild "Release" %1 %2
+@if %errorlevel% neq 0 goto errorexit
+
+call :run_msbuild "Static Release" %1 %2
+@if %errorlevel% neq 0 goto errorexit
+
+@endlocal
+@exit /b 0
+
+:run_msbuild
+
+@echo +++++++++++++++++++++++++ %~1 %~2 %~3
+msbuild /m "/p:Configuration=%~1;Platform=%~2;PlatformToolset=%~3;wxCompilerPrefix=%~3%~4" /t:Build /consoleLoggerParameters:Summary /verbosity:minimal /fileLogger "/fileLoggerParameters:Summary;Append;Verbosity=normal;LogFile=%~dp0build\audacity_%~1_%~2_%~3.log" audacity.sln
+@if %errorlevel% neq 0 goto errorexit
+@echo ------------------------- %~1 %~2 %~3
+
+@exit /b 0
+
 :errorexit
 @endlocal
+@echo ***** BUILD FAILED ***** %0 %*
 @exit /b 1
