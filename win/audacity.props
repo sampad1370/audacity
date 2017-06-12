@@ -6,7 +6,7 @@
     <BaseAudacityPlatformToolset Condition="'$(VisualStudioVersion)' &gt; '12.0'">v140</BaseAudacityPlatformToolset>
     <BaseAudacityPlatformToolset Condition="'$(VisualStudioVersion)' &gt; '14.0'">v141</BaseAudacityPlatformToolset>
     <!-- Only enable XP support for 32-bit release builds. -->
-    <AudacityPlatformPostfix Condition="'$(Configuration)|$(Platform)'=='Release|Win32' Or '$(Configuration)|$(Platform)'=='Static Release|Win32'">_xp</AudacityPlatformPostfix>
+    <AudacityPlatformPostfix Condition="'$(Platform)'=='Win32' And '$(DesignTimeBuild)' == ''">_xp</AudacityPlatformPostfix>
     <AudacityPlatformToolset>$(BaseAudacityPlatformToolset)$(AudacityPlatformPostfix)</AudacityPlatformToolset>
 
     <!--<AudacityOutDir>$(SolutionDir)$(Configuration)\</AudacityOutDir>
@@ -23,5 +23,25 @@
     <WXWIN Condition=" '$(WXWIN_VS2013)' != '' And Exists('$(WXWIN_VS2013)\build\msw') And '$(VisualStudioVersion)' == '12.0'">$(WXWIN_VS2013)</WXWIN>
     <WXWIN Condition=" '$(WXWIN_VS2015)' != '' And Exists('$(WXWIN_VS2015)\build\msw') And '$(VisualStudioVersion)' == '14.0'">$(WXWIN_VS2015)</WXWIN>
     <WXWIN Condition=" '$(WXWIN_VS2017)' != '' And Exists('$(WXWIN_VS2017)\build\msw') And '$(VisualStudioVersion)' == '15.0'">$(WXWIN_VS2017)</WXWIN>
+    <WXWIN Condition=" '$(WXWIN)' == '' ">$(SolutionDir)..\wxWidgets</WXWIN>
+
+    <AudacityWxArchSuffix />
+    <AudacityWxArchSuffix Condition="'$(Platform)' == 'x64'">_x64</AudacityWxArchSuffix>
+
+    <AudacityWxSuffix>u</AudacityWxSuffix>
+    <AudacityWxSuffix Condition="'$(Configuration)' == 'Debug' Or '$(Configuration)' == 'Static Debug'">ud</AudacityWxSuffix>
+
+    <AudacityWxLibTypeSuffix>lib</AudacityWxLibTypeSuffix>
+    <AudacityWxLibTypeSuffix Condition="'$(Configuration)' == 'Debug' Or '$(Configuration)' == 'Release'">dll</AudacityWxLibTypeSuffix>
+
+    <AudacityWxToolkitPrefix Condition="'$(AudacityWxToolkitPrefix)' == ''">msw</AudacityWxToolkitPrefix>
+    <!-- <AudacityWxCompilerPrefix Condition="'$(AudacityWxCompilerPrefix)' == ''">vc</AudacityWxCompilerPrefix> -->
+    <AudacityWxCompilerPrefix Condition="'$(AudacityWxCompilerPrefix)' == ''">$(AudacityPlatformToolset)</AudacityWxCompilerPrefix>
+    <AudacityWxCfg Condition="'$(AudacityWxConfig)' == ''"></AudacityWxCfg>
+
+    <AudacityWxLibDirName>$(AudacityWxCompilerPrefix)$(AudacityWxArchSuffix)_$(AudacityWxLibTypeSuffix)$(AudacityWxCfg)</AudacityWxLibDirName>
+    <AudacityWxLibDir>$(WXWIN)\lib\$(AudacityWxLibDirName)</AudacityWxLibDir>
+    <AudacityWxIncludeDir Condition="'$(AudacityWxIncludeDir)' == ''">$(WXWIN)\include</AudacityWxIncludeDir>
+    <AudacityWxToolkitIncludeDir Condition="'$(AudacityWxToolkitIncludeDir)' == ''">$(AudacityWxLibDir)\$(AudacityWxToolkitPrefix)$(AudacityWxSuffix)</AudacityWxToolkitIncludeDir>
   </PropertyGroup>
 </Project>
