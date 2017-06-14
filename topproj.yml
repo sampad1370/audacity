@@ -1,0 +1,47 @@
+version: 1.0.{build}
+branches:
+  only:
+  - x64
+image:
+- Visual Studio 2017
+#- Visual Studio 2015
+- Visual Studio 2013
+configuration: Release
+platform:
+- x64
+- Win32
+environment:
+ matrix:
+   - Architecture: none
+   - Architecture: avx
+   - Architecture: avx2
+   - Architecture: sse2
+matrix:
+  fast_finish: true
+  exclude:
+    - image: Visual Studio 2013
+      platform: x64
+    - image: Visual Studio 2013
+      Architecture: avx2
+    - image: Visual Studio 2017
+      Architecture: avx2
+      platform: Win32
+    - platform: x64
+      Architecture: sse2
+install:
+- git submodule update --init wxWidgets
+before_build:
+- cmd: nuget restore win\audacity.sln
+build:
+  project: win\top.proj
+  parallel: true
+  verbosity: minimal
+before_package:
+- cmd: >-
+    del /S win\build\*.ipdb &
+    del /S win\build\*.iobj &
+    del /S win\build\*.pdb &
+    del /S win\build\*.exp
+artifacts:
+- path: win\build\bin
+  name: 'audacity-%PLATFORM%_%Architecture%-%APPVEYOR_REPO_COMMIT%-%APPVEYOR_BUILD_WORKER_IMAGE%'
