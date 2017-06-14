@@ -1,0 +1,51 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <BasePlatformToolset>v120</BasePlatformToolset>
+  </PropertyGroup>
+  <Choose>
+    <When Condition="'$(VisualStudioVersion)' != ''">
+      <PropertyGroup>
+        <BasePlatformToolset Condition="'$(VisualStudioVersion)' &gt; '12.0'">v140</BasePlatformToolset>
+        <BasePlatformToolset Condition="'$(VisualStudioVersion)' &gt; '14.0'">v141</BasePlatformToolset>
+      </PropertyGroup>
+    </When>
+    <When Condition="'$(APPVEYOR_BUILD_WORKER_IMAGE)' != ''">
+      <PropertyGroup>
+        <BasePlatformToolset Condition="'$(APPVEYOR_BUILD_WORKER_IMAGE)' == 'Visual Studio 2015'">v140</BasePlatformToolset>
+        <BasePlatformToolset Condition="'$(APPVEYOR_BUILD_WORKER_IMAGE)' == 'Visual Studio 2017'">v141</BasePlatformToolset>
+      </PropertyGroup>
+    </When>
+  </Choose>
+  <PropertyGroup>
+    <!-- Only enable XP support for 32-bit builds. -->
+    <PlatformPostfix Condition="'$(Platform)'=='Win32' And '$(Configuration)' != ''">_xp</PlatformPostfix>
+    <PlatformToolset>$(BasePlatformToolset)$(PlatformPostfix)</PlatformToolset>
+    <AudacityConfiguration>Static Release</AudacityConfiguration>
+    <AudacityConfiguration Condition="'$(Configuration)'=='Debug'">Static Debug</AudacityConfiguration>
+    <AudacityCompilerPrefix>$(PlatformToolset)</AudacityCompilerPrefix>
+    <BaseProperties>Platform=$(Platform);PlatformToolset=$(PlatformToolset)</BaseProperties>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Architecture)'!='' And '$(Architecture)'!='none'">
+    <AudacityCompilerPrefix>$(AudacityCompilerPrefix)$(Architecture)</AudacityCompilerPrefix>
+    <AudacityEnhancedInstructionSet Condition="'$(Architecture)'=='sse' And '$(Platform)'=='Win32'">StreamingSIMDExtensions</AudacityEnhancedInstructionSet>
+    <AudacityEnhancedInstructionSet Condition="'$(Architecture)'=='sse2' And '$(Platform)'=='Win32'">StreamingSIMDExtensions2</AudacityEnhancedInstructionSet>
+    <AudacityEnhancedInstructionSet Condition="'$(Architecture)'=='avx'">AdvancedVectorExtensions</AudacityEnhancedInstructionSet>
+    <AudacityEnhancedInstructionSet Condition="'$(Architecture)'=='avx2'">AdvancedVectorExtensions2</AudacityEnhancedInstructionSet>
+    <BaseProperties Condition="'$(AudacityEnhancedInstructionSet)'!=''">$(BaseProperties);AudacityEnhancedInstructionSet=$(AudacityEnhancedInstructionSet)</BaseProperties>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReferences Include="$(MSBuildThisFileDirectory)../wxWidgets/build/msw/wx_vc12.sln">
+      <Properties>Configuration=$(Configuration);wxCompilerPrefix=$(AudacityCompilerPrefix);WholeProgramOptimization=true;$(BaseProperties)</Properties>
+    </ProjectReferences>
+    <ProjectReferences Include="$(MSBuildThisFileDirectory)audacity.sln">
+      <Properties>Configuration=$(AudacityConfiguration);AudacityPlatformToolset=$(AudacityCompilerPrefix);AudacityWxCompilerPrefix=$(AudacityCompilerPrefix);$(BaseProperties)</Properties>
+    </ProjectReferences>
+  </ItemGroup>
+  <Target Name="Build">
+    <Copy Condition="!Exists('$(MSBuildThisFileDirectory)..\wxWidgets\include\wx\msw\setup.h')" SourceFiles="$(MSBuildThisFileDirectory)..\wxWidgets\include\wx\msw\setup0.h" DestinationFiles="$(MSBuildThisFileDirectory)..\wxWidgets\include\wx\msw\setup.h" />
+    <MSBuild Projects="@(ProjectReferences)" Targets="Build" />
+  </Target>
+  <Target Name="Clean">
+    <MSBuild Projects="@(ProjectReferences)" Targets="Clean" />
+  </Target>
+</Project>
