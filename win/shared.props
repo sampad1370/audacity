@@ -11,6 +11,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <FloatingPointModel>Fast</FloatingPointModel>
       <WarningLevel>Level3</WarningLevel>
+      <DisableSpecificWarnings>4275</DisableSpecificWarnings>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup />
