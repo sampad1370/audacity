@@ -6,7 +6,7 @@
 
 @if not exist %VSWHERE% set VSWHERE="%ProgramFiles%\Microsoft Visual Studio\Installer\vswhere.exe"
 
-@if not exist %VSWHERE% goto errorexit
+@if not exist %VSWHERE% goto weberrorexit
 
 @set pre=Microsoft.VisualStudio.Product.
 @set ids=%pre%Community %pre%Professional %pre%Enterprise %pre%BuildTools
@@ -15,7 +15,7 @@
   @set VS150COMNTOOLS=%%i\Common7\Tools\
 )
 
-@if not exist "%VS150COMNTOOLS%VsDevCmd.bat" goto errorexit
+@if not exist "%VS150COMNTOOLS%VsDevCmd.bat" goto weberrorexit
 
 :skipwhere
 
@@ -24,7 +24,7 @@ md "%~dp0build\"
 @setlocal
 
 call "%VS150COMNTOOLS%VsDevCmd.bat"
-@if %errorlevel% neq 0 goto errorexit
+@if %errorlevel% neq 0 goto weberrorexit
 
 call :dobuild Win32 v141_xp
 @if %errorlevel% neq 0 goto errorexit
@@ -33,7 +33,7 @@ call :dobuild Win32 v141_xp
 @setlocal
 
 call "%VS150COMNTOOLS%VsDevCmd.bat" -arch=x64 -host_arch=x64
-@if %errorlevel% neq 0 goto errorexit
+@if %errorlevel% neq 0 goto weberrorexit
 
 call :dobuild x64 v141
 @if %errorlevel% neq 0 goto errorexit
@@ -69,6 +69,10 @@ msbuild /m "/p:Configuration=%~1;Platform=%~2;PlatformToolset=%~3;wxCompilerPref
 @echo ------------------------- %~1 %~2 %~3
 
 @exit /b 0
+
+:weberrorexit
+@echo ***** Unable to find Visual Studio 2017 *****
+start https://www.visualstudio.com/downloads/#build-tools-for-visual-studio-2017
 
 :errorexit
 @endlocal
