@@ -96,7 +96,6 @@
     <ClCompile>
       <AdditionalIncludeDirectories>..\..\..\lib-src\lv2\windows;..\..\..\lib-src\lv2\sord\src;..\..\..\lib-src\lv2\lilv;..\..\..\lib-src\lv2\lv2;..\..\..\lib-src\lv2\serd;..\..\..\lib-src\lv2\sord;..\..\..\lib-src\lv2\sratom;..\..\..\lib-src\lv2\suil;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;$(AudacityConditionalSnprintf);HAVE_FMAX;LILV_INTERNAL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <PrecompiledHeader />
       <CompileAs>CompileAsCpp</CompileAs>
       <DisableSpecificWarnings>4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
@@ -106,7 +105,6 @@
     <ClCompile>
       <AdditionalIncludeDirectories>..\..\..\lib-src\lv2\windows;..\..\..\lib-src\lv2\sord\src;..\..\..\lib-src\lv2\lilv;..\..\..\lib-src\lv2\lv2;..\..\..\lib-src\lv2\serd;..\..\..\lib-src\lv2\sord;..\..\..\lib-src\lv2\sratom;..\..\..\lib-src\lv2\suil;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;$(AudacityConditionalSnprintf);HAVE_FMAX;LILV_INTERNAL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <PrecompiledHeader>
       </PrecompiledHeader>
       <CompileAs>CompileAsCpp</CompileAs>
@@ -117,7 +115,6 @@
     <ClCompile>
       <AdditionalIncludeDirectories>..\..\..\lib-src\lv2\windows;..\..\..\lib-src\lv2\sord\src;..\..\..\lib-src\lv2\lilv;..\..\..\lib-src\lv2\lv2;..\..\..\lib-src\lv2\serd;..\..\..\lib-src\lv2\sord;..\..\..\lib-src\lv2\sratom;..\..\..\lib-src\lv2\suil;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;$(AudacityConditionalSnprintf);HAVE_FMAX;LILV_INTERNAL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader />
       <CompileAs>CompileAsCpp</CompileAs>
       <DisableSpecificWarnings>4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
@@ -134,7 +131,6 @@
     <ClCompile>
       <AdditionalIncludeDirectories>..\..\..\lib-src\lv2\windows;..\..\..\lib-src\lv2\sord\src;..\..\..\lib-src\lv2\lilv;..\..\..\lib-src\lv2\lv2;..\..\..\lib-src\lv2\serd;..\..\..\lib-src\lv2\sord;..\..\..\lib-src\lv2\sratom;..\..\..\lib-src\lv2\suil;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;$(AudacityConditionalSnprintf);HAVE_FMAX;LILV_INTERNAL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>
       </PrecompiledHeader>
       <CompileAs>CompileAsCpp</CompileAs>

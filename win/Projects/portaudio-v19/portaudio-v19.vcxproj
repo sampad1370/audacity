@@ -114,7 +114,6 @@
     <ClCompile>
       <AdditionalIncludeDirectories>..\..\..\lib-src\portaudio-v19\include;..\..\..\lib-src\portaudio-v19\src\common;..\..\..\lib-src\portaudio-v19\src\os\win;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;$(SdkPreprocessorDefinitions);%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <PrecompiledHeader />
       <CompileAs>Default</CompileAs>
       <DisableSpecificWarnings>4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
@@ -132,7 +131,6 @@
     <ClCompile>
       <AdditionalIncludeDirectories>..\..\..\lib-src\portaudio-v19\include;..\..\..\lib-src\portaudio-v19\src\common;..\..\..\lib-src\portaudio-v19\src\os\win;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;$(SdkPreprocessorDefinitions);%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <PrecompiledHeader>
       </PrecompiledHeader>
       <CompileAs>Default</CompileAs>
@@ -151,7 +149,6 @@
     <ClCompile>
       <AdditionalIncludeDirectories>..\..\..\lib-src\portaudio-v19\include;..\..\..\lib-src\portaudio-v19\src\common;..\..\..\lib-src\portaudio-v19\src\os\win;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;$(SdkPreprocessorDefinitions);%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader />
       <CompileAs>Default</CompileAs>
       <DisableSpecificWarnings>4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
@@ -170,7 +167,6 @@
     <ClCompile>
       <AdditionalIncludeDirectories>..\..\..\lib-src\portaudio-v19\include;..\..\..\lib-src\portaudio-v19\src\common;..\..\..\lib-src\portaudio-v19\src\os\win;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;$(SdkPreprocessorDefinitions);%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>
       </PrecompiledHeader>
       <CompileAs>Default</CompileAs>
