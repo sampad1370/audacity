@@ -1,4 +1,5 @@
-<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
+    DefaultTargets="Build">
   <PropertyGroup>
     <BasePlatformToolset>v120</BasePlatformToolset>
   </PropertyGroup>
@@ -42,10 +43,13 @@
     </ProjectReferences>
   </ItemGroup>
   <Target Name="Build">
-    <Copy Condition="!Exists('$(MSBuildThisFileDirectory)..\wxWidgets\include\wx\msw\setup.h')" SourceFiles="$(MSBuildThisFileDirectory)..\wxWidgets\include\wx\msw\setup0.h" DestinationFiles="$(MSBuildThisFileDirectory)..\wxWidgets\include\wx\msw\setup.h" />
+    <Copy Condition="!Exists('$(MSBuildThisFileDirectory)..\wxWidgets\include\wx\msw\setup.h')"
+      SourceFiles="$(MSBuildThisFileDirectory)..\wxWidgets\include\wx\msw\setup0.h"
+      DestinationFiles="$(MSBuildThisFileDirectory)..\wxWidgets\include\wx\msw\setup.h" />
     <MSBuild Projects="@(ProjectReferences)" Targets="Build" />
   </Target>
   <Target Name="Clean">
     <MSBuild Projects="@(ProjectReferences)" Targets="Clean" />
   </Target>
+  <Target Name="Rebuild" DependsOnTargets="Clean;Build" />
 </Project>
