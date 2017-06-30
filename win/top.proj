@@ -35,7 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReferences Include="$(MSBuildThisFileDirectory)../wxWidgets/build/msw/wx_vc12.sln">
-      <Properties>Configuration=$(Configuration);wxCompilerPrefix=$(AudacityCompilerPrefix);WholeProgramOptimization=true;$(BaseProperties)</Properties>
+      <Properties>Configuration=$(Configuration);wxCompilerPrefix=$(AudacityCompilerPrefix);WholeProgramOptimization=true;ForceStaticRuntime=true;$(BaseProperties)</Properties>
     </ProjectReferences>
     <ProjectReferences Include="$(MSBuildThisFileDirectory)audacity.sln">
       <Properties>Configuration=$(AudacityConfiguration);AudacityPlatformToolset=$(AudacityCompilerPrefix);AudacityWxCompilerPrefix=$(AudacityCompilerPrefix);$(BaseProperties)</Properties>
