@@ -44,4 +44,4 @@ before_package:
     del /S win\build\*.exp
 artifacts:
 - path: win\build\bin
-  name: 'audacity-%PLATFORM%_%Architecture%-%APPVEYOR_REPO_COMMIT%-%APPVEYOR_BUILD_WORKER_IMAGE%'
+  name: 'audacity-%PLATFORM%_%Architecture%-%APPVEYOR_BUILD_VERSION%-%APPVEYOR_REPO_COMMIT%-%APPVEYOR_BUILD_WORKER_IMAGE%'
