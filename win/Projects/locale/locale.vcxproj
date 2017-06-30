@@ -81,50 +81,50 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <PostBuildEvent>
-      <Command>for %%I in ("$(WXWIN)\locale\*.po") do call :fmt %%~nI
+      <!--<Command>for %%I in ("$(WXWIN)\locale\*.po") do call :fmt %%~nI
 goto :EOF
 
 :fmt
 if not exist "$(OutDir)Languages\%1" mkdir "$(OutDir)Languages\%1"
 "$(MsgfmtCommand)" -o "$(OutDir)Languages\%1\wxstd.mo" "$(WXWIN)\locale\%1.po"
 goto :EOF
-</Command>
+</Command> -->
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <PostBuildEvent>
-      <Command>for %%I in ("$(WXWIN)\locale\*.po") do call :fmt %%~nI
+    <!--<Command>for %%I in ("$(WXWIN)\locale\*.po") do call :fmt %%~nI
 goto :EOF
 
 :fmt
 if not exist "$(OutDir)Languages\%1" mkdir "$(OutDir)Languages\%1"
 "$(MsgfmtCommand)" -o "$(OutDir)Languages\%1\wxstd.mo" "$(WXWIN)\locale\%1.po"
 goto :EOF
-</Command>
+</Command>-->
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <PostBuildEvent>
-      <Command>for %%I in ("$(WXWIN)\locale\*.po") do call :fmt %%~nI
+	    <!-- <Command>for %%I in ("$(WXWIN)\locale\*.po") do call :fmt %%~nI
 goto :EOF
 
 :fmt
 if not exist "$(OutDir)Languages\%1" mkdir "$(OutDir)Languages\%1"
 "$(MsgfmtCommand)" -o "$(OutDir)Languages\%1\wxstd.mo" "$(WXWIN)\locale\%1.po"
 goto :EOF
-</Command>
+</Command> -->
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <PostBuildEvent>
-      <Command>for %%I in ("$(WXWIN)\locale\*.po") do call :fmt %%~nI
+      <!-- <Command>for %%I in ("$(WXWIN)\locale\*.po") do call :fmt %%~nI
 goto :EOF
 
 :fmt
 if not exist "$(OutDir)Languages\%1" mkdir "$(OutDir)Languages\%1"
 "$(MsgfmtCommand)" -o "$(OutDir)Languages\%1\wxstd.mo" "$(WXWIN)\locale\%1.po"
 goto :EOF
-</Command>
+</Command> -->
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -183,6 +183,33 @@ goto :EOF
     <msgfmt Include="..\..\..\locale\vi.po" />
     <msgfmt Include="..\..\..\locale\zh_CN.po" />
     <msgfmt Include="..\..\..\locale\zh_TW.po" />
+    <msgfmt Include="$(WXWIN)\locale\*.po">
+      <OutputName>$(OutDir)Languages\%(Filename)\wxstd.mo</OutputName>
+      <Outputs>%(OutputName)</Outputs>
+      <ExecutionDescription>Compiling wxWidgets %(Filename) locale</ExecutionDescription>
+      <Visible>false</Visible>
+    </msgfmt>
+    <msgfmt Remove="$(WXWIN)\locale\gl_ES.po" />
+    <msgfmt Include="$(WXWIN)\locale\gl_ES.po" >
+      <OutputName>$(OutDir)Languages\gl\wxstd.mo</OutputName>
+      <Outputs>%(OutputName)</Outputs>
+      <ExecutionDescription>Compiling wxWidgets %(Filename) to gl locale</ExecutionDescription>
+      <Visible>false</Visible>
+    </msgfmt>
+    <msgfmt Remove="$(WXWIN)\locale\ko_KR.po" />
+    <msgfmt Include="$(WXWIN)\locale\ko_KR.po" >
+      <OutputName>$(OutDir)Languages\ko\wxstd.mo</OutputName>
+      <Outputs>%(OutputName)</Outputs>
+      <ExecutionDescription>Compiling wxWidgets %(Filename) to ko locale</ExecutionDescription>
+      <Visible>false</Visible>
+    </msgfmt>
+    <msgfmt Remove="$(WXWIN)\locale\pt.po" />
+    <msgfmt Include="$(WXWIN)\locale\pt.po" >
+      <OutputName>$(OutDir)Languages\pt_PT\wxstd.mo</OutputName>
+      <Outputs>%(OutputName)</Outputs>
+      <ExecutionDescription>Compiling wxWidgets %(Filename) to pt_PT locale</ExecutionDescription>
+      <Visible>false</Visible>
+    </msgfmt>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\locale\audacity.pot" />
