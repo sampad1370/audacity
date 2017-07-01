@@ -43,5 +43,7 @@
     <AudacityWxLibDir>$(WXWIN)\lib\$(AudacityWxLibDirName)</AudacityWxLibDir>
     <AudacityWxIncludeDir Condition="'$(AudacityWxIncludeDir)' == ''">$(WXWIN)\include</AudacityWxIncludeDir>
     <AudacityWxToolkitIncludeDir Condition="'$(AudacityWxToolkitIncludeDir)' == ''">$(AudacityWxLibDir)\$(AudacityWxToolkitPrefix)$(AudacityWxSuffix)</AudacityWxToolkitIncludeDir>
+
+    <AudacityPackages Condition="'$(AudacityPackages)' == ''">$(MSBuildThisFileDirectory)packages\</AudacityPackages>
   </PropertyGroup>
 </Project>
