@@ -32,6 +32,8 @@ install:
 - git submodule update --init wxWidgets
 before_build:
 - cmd: nuget restore win\audacity.sln
+- 'echo #define REV_LONG "%APPVEYOR_REPO_COMMIT%" > src\RevisionIdent.h'
+- 'echo #define REV_TIME "%APPVEYOR_REPO_COMMIT_TIMESTAMP%" >> src\RevisionIdent.h'
 build:
   project: win\top.proj
   parallel: true
