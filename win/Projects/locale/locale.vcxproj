@@ -17,16 +17,24 @@
       <Configuration>Release</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="Static Release|Win32">
+      <Configuration>Static Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Static Release|x64">
+      <Configuration>Static Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{BE9F28C5-058A-45F5-B2C1-D077BC058AAE}</ProjectGuid>
     <RootNamespace>locale</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-  <PropertyGroup Label="Audacity">
-    <MsgfmtCommand>$(SolutionDir)packages\Gettext.Tools.0.19.8.1\tools\bin\msgfmt</MsgfmtCommand>
-  </PropertyGroup>
   <Import Project="..\..\audacity.props" />
+  <PropertyGroup Label="Audacity">
+    <MsgfmtCommand>$(AudacityPackages)Gettext.Tools.0.19.8.1\tools\bin\msgfmt</MsgfmtCommand>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Utility</ConfigurationType>
     <PlatformToolset>$(AudacityPlatformToolset)</PlatformToolset>
@@ -39,14 +47,19 @@
     <ConfigurationType>Utility</ConfigurationType>
     <PlatformToolset>$(AudacityPlatformToolset)</PlatformToolset>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Static Release|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <PlatformToolset>$(AudacityPlatformToolset)</PlatformToolset>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Utility</ConfigurationType>
     <PlatformToolset>$(AudacityPlatformToolset)</PlatformToolset>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Static Release|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <PlatformToolset>$(AudacityPlatformToolset)</PlatformToolset>
+  </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
-  <ImportGroup Label="ExtensionSettings">
-    <Import Project="po.props" />
-  </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
@@ -56,7 +69,13 @@
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Static Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Static Release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
@@ -67,7 +86,15 @@
     <OutDir>$(AudacityOutDir)</OutDir>
     <IntDir>$(AudacityIntDir)</IntDir>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Static Release|Win32'">
+    <OutDir>$(AudacityOutDir)</OutDir>
+    <IntDir>$(AudacityIntDir)</IntDir>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(AudacityOutDir)</OutDir>
+    <IntDir>$(AudacityIntDir)</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Static Release|x64'">
     <OutDir>$(AudacityOutDir)</OutDir>
     <IntDir>$(AudacityIntDir)</IntDir>
   </PropertyGroup>
@@ -79,53 +106,12 @@
     <OutDir>$(AudacityOutDir)</OutDir>
     <IntDir>$(AudacityIntDir)</IntDir>
   </PropertyGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <PostBuildEvent>
-      <!--<Command>for %%I in ("$(WXWIN)\locale\*.po") do call :fmt %%~nI
-goto :EOF
-
-:fmt
-if not exist "$(OutDir)Languages\%1" mkdir "$(OutDir)Languages\%1"
-"$(MsgfmtCommand)" -o "$(OutDir)Languages\%1\wxstd.mo" "$(WXWIN)\locale\%1.po"
-goto :EOF
-</Command> -->
-    </PostBuildEvent>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <PostBuildEvent>
-    <!--<Command>for %%I in ("$(WXWIN)\locale\*.po") do call :fmt %%~nI
-goto :EOF
-
-:fmt
-if not exist "$(OutDir)Languages\%1" mkdir "$(OutDir)Languages\%1"
-"$(MsgfmtCommand)" -o "$(OutDir)Languages\%1\wxstd.mo" "$(WXWIN)\locale\%1.po"
-goto :EOF
-</Command>-->
-    </PostBuildEvent>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <PostBuildEvent>
-	    <!-- <Command>for %%I in ("$(WXWIN)\locale\*.po") do call :fmt %%~nI
-goto :EOF
-
-:fmt
-if not exist "$(OutDir)Languages\%1" mkdir "$(OutDir)Languages\%1"
-"$(MsgfmtCommand)" -o "$(OutDir)Languages\%1\wxstd.mo" "$(WXWIN)\locale\%1.po"
-goto :EOF
-</Command> -->
-    </PostBuildEvent>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <PostBuildEvent>
-      <!-- <Command>for %%I in ("$(WXWIN)\locale\*.po") do call :fmt %%~nI
-goto :EOF
-
-:fmt
-if not exist "$(OutDir)Languages\%1" mkdir "$(OutDir)Languages\%1"
-"$(MsgfmtCommand)" -o "$(OutDir)Languages\%1\wxstd.mo" "$(WXWIN)\locale\%1.po"
-goto :EOF
-</Command> -->
-    </PostBuildEvent>
+  <ItemDefinitionGroup>
+    <msgfmt>
+      <OutputName>$(OutDir)Languages\%(Filename)\Audacity.mo</OutputName>
+      <Message>Compiling %(Filename) locale</Message>
+      <Visible>false</Visible>
+    </msgfmt>
   </ItemDefinitionGroup>
   <ItemGroup>
     <msgfmt Include="..\..\..\locale\af.po" />
@@ -183,31 +169,26 @@ goto :EOF
     <msgfmt Include="..\..\..\locale\vi.po" />
     <msgfmt Include="..\..\..\locale\zh_CN.po" />
     <msgfmt Include="..\..\..\locale\zh_TW.po" />
-    <msgfmt Include="$(WXWIN)\locale\*.po">
-      <OutputName>$(OutDir)Languages\%(Filename)\wxstd.mo</OutputName>
-      <Outputs>%(OutputName)</Outputs>
-      <ExecutionDescription>Compiling wxWidgets %(Filename) locale</ExecutionDescription>
-      <Visible>false</Visible>
-    </msgfmt>
-    <msgfmt Remove="$(WXWIN)\locale\gl_ES.po" />
-    <msgfmt Include="$(WXWIN)\locale\gl_ES.po" >
+  </ItemGroup>
+  <ItemGroup>
+    <msgfmt Include="$(WXWIN)\locale\gl_ES.po">
       <OutputName>$(OutDir)Languages\gl\wxstd.mo</OutputName>
-      <Outputs>%(OutputName)</Outputs>
-      <ExecutionDescription>Compiling wxWidgets %(Filename) to gl locale</ExecutionDescription>
+      <Message>Compiling wxWidgets %(Filename) to gl locale</Message>
       <Visible>false</Visible>
     </msgfmt>
-    <msgfmt Remove="$(WXWIN)\locale\ko_KR.po" />
-    <msgfmt Include="$(WXWIN)\locale\ko_KR.po" >
+    <msgfmt Include="$(WXWIN)\locale\ko_KR.po">
       <OutputName>$(OutDir)Languages\ko\wxstd.mo</OutputName>
-      <Outputs>%(OutputName)</Outputs>
-      <ExecutionDescription>Compiling wxWidgets %(Filename) to ko locale</ExecutionDescription>
+      <Message>Compiling wxWidgets %(Filename) to ko locale</Message>
       <Visible>false</Visible>
     </msgfmt>
-    <msgfmt Remove="$(WXWIN)\locale\pt.po" />
-    <msgfmt Include="$(WXWIN)\locale\pt.po" >
+    <msgfmt Include="$(WXWIN)\locale\pt.po">
       <OutputName>$(OutDir)Languages\pt_PT\wxstd.mo</OutputName>
-      <Outputs>%(OutputName)</Outputs>
-      <ExecutionDescription>Compiling wxWidgets %(Filename) to pt_PT locale</ExecutionDescription>
+      <Message>Compiling wxWidgets %(Filename) to pt_PT locale</Message>
+      <Visible>false</Visible>
+    </msgfmt>
+    <msgfmt Include="$(WXWIN)\locale\*.po" Exclude="@(msgfmt)">
+      <OutputName>$(OutDir)Languages\%(Filename)\wxstd.mo</OutputName>
+      <Message>Compiling wxWidgets %(Filename) locale</Message>
       <Visible>false</Visible>
     </msgfmt>
   </ItemGroup>
@@ -215,8 +196,21 @@ goto :EOF
     <None Include="..\..\..\locale\audacity.pot" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <OutputPaths Include="@(msgfmt->'%(OutputName)')" />
+    <OutputDirs Include="@(OutputPaths-&gt;'%(RootDir)%(Directory)'-&gt;Distinct())" />
+    <CustomBuildStep Include="@(msgfmt)">
+      <Command>"$(MsgfmtCommand)" -o "%(OutputName)" "%(FullPath)"</Command>
+      <Inputs>%(FullPath)</Inputs>
+      <Outputs>%(OutputName)</Outputs>
+    </CustomBuildStep>
+  </ItemGroup>
+  <Target Name="MakeOutputDirs" BeforeTargets="CustomBuildStep">
+    <MakeDir Directories="@(OutputDirs)" />
+  </Target>
+  <Target Name="CleanOutput" BeforeTargets="AfterClean">
+    <Delete Files="@(OutputPaths)" />
+    <RemoveDir Directories="@(OutputDirs);$(OutDir)Languages" />
+  </Target>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <ImportGroup Label="ExtensionTargets">
-    <Import Project="po.targets" />
-  </ImportGroup>
 </Project>
