@@ -22,7 +22,11 @@ matrix:
     - image: Visual Studio 2013
       platform: x64
     - image: Visual Studio 2013
+      Architecture: avx
+    - image: Visual Studio 2013
       Architecture: avx2
+    - image: Visual Studio 2013
+      Architecture: sse2
     - image: Visual Studio 2017
       Architecture: avx2
       platform: Win32
