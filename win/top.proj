@@ -1,21 +1,25 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
     DefaultTargets="Build">
-  <PropertyGroup>
-    <BasePlatformToolset>v120</BasePlatformToolset>
-  </PropertyGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' != ''">
       <PropertyGroup>
+        <BasePlatformToolset>v120</BasePlatformToolset>
         <BasePlatformToolset Condition="'$(VisualStudioVersion)' &gt; '12.0'">v140</BasePlatformToolset>
         <BasePlatformToolset Condition="'$(VisualStudioVersion)' &gt; '14.0'">v141</BasePlatformToolset>
       </PropertyGroup>
     </When>
     <When Condition="'$(APPVEYOR_BUILD_WORKER_IMAGE)' != ''">
       <PropertyGroup>
+        <BasePlatformToolset Condition="'$(APPVEYOR_BUILD_WORKER_IMAGE)' == 'Visual Studio 2013'">v120</BasePlatformToolset>
         <BasePlatformToolset Condition="'$(APPVEYOR_BUILD_WORKER_IMAGE)' == 'Visual Studio 2015'">v140</BasePlatformToolset>
         <BasePlatformToolset Condition="'$(APPVEYOR_BUILD_WORKER_IMAGE)' == 'Visual Studio 2017'">v141</BasePlatformToolset>
       </PropertyGroup>
     </When>
+    <Otherwise>
+      <PropertyGroup>
+        <BasePlatformToolset>v141</BasePlatformToolset>
+      </PropertyGroup>
+    </Otherwise>
   </Choose>
   <PropertyGroup>
     <!-- Only enable XP support for 32-bit builds.  Don't bother for AVX and AVX2 since they require Win7 SP1 or later. -->
