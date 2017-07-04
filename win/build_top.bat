@@ -26,7 +26,7 @@ md "%~dp0build\"
 call "%VS150COMNTOOLS%VsDevCmd.bat"
 @if %errorlevel% neq 0 goto weberrorexit
 
-call :dobuild Win32 v141_xp
+call :dobuild Win32
 @if %errorlevel% neq 0 goto errorexit
 
 @endlocal
@@ -35,7 +35,7 @@ call :dobuild Win32 v141_xp
 call "%VS150COMNTOOLS%VsDevCmd.bat" -arch=x64 -host_arch=x64
 @if %errorlevel% neq 0 goto weberrorexit
 
-call :dobuild x64 v141
+call :dobuild x64
 @if %errorlevel% neq 0 goto errorexit
 
 @endlocal
@@ -57,10 +57,12 @@ call :run_msbuild "Release" %1 %2
 
 :run_msbuild
 
-@echo +++++++++++++++++++++++++ %~1 %~2 %~3
-msbuild /m "/p:Configuration=%~1;Platform=%~2" /t:Build /consoleLoggerParameters:Summary /verbosity:minimal /fileLogger "/fileLoggerParameters:Summary;PerformanceSummary;Append;Verbosity=normal;LogFile=%~dp0build\audacity_%~1_%~2_%~3.log" top.proj
+@title Building Audacity %~1^|%~2
+@echo +++++++++++++++++++++++++ %~1^|%~2
+msbuild /m "/p:Configuration=%~1;Platform=%~2" /t:Build /Verbosity:minimal /fileLogger "/fileLoggerParameters:Summary;Append;Verbosity=normal;LogFile=%~dp0build\audacity_%~1_%~2.log" top.proj
 @if %errorlevel% neq 0 goto errorexit
-@echo ------------------------- %~1 %~2 %~3
+@echo ------------------------- %~1^|%~2
+@title Command Prompt
 
 @exit /b 0
 
@@ -70,5 +72,6 @@ start https://www.visualstudio.com/downloads/#build-tools-for-visual-studio-2017
 
 :errorexit
 @endlocal
+@title Command Prompt
 @echo ***** BUILD FAILED ***** %0 %*
 @exit /b 1
