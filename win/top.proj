@@ -18,8 +18,8 @@
     </When>
   </Choose>
   <PropertyGroup>
-    <!-- Only enable XP support for 32-bit builds. -->
-    <PlatformPostfix Condition="'$(Platform)'=='Win32' And '$(Configuration)' != ''">_xp</PlatformPostfix>
+    <!-- Only enable XP support for 32-bit builds.  Don't bother for AVX and AVX2 since they require Win7 SP1 or later. -->
+    <PlatformPostfix Condition="'$(Platform)'=='Win32' And '$(Configuration)' != '' And '$(Architecture)' != 'avx' And '$(Architecture)' != 'avx2'">_xp</PlatformPostfix>
     <PlatformToolset>$(BasePlatformToolset)$(PlatformPostfix)</PlatformToolset>
     <AudacityConfiguration>Static Release</AudacityConfiguration>
     <AudacityConfiguration Condition="'$(Configuration)'=='Debug'">Static Debug</AudacityConfiguration>
@@ -35,9 +35,20 @@
     <BaseProperties Condition="'$(AudacityEnhancedInstructionSet)'!=''">$(BaseProperties);AudacityEnhancedInstructionSet=$(AudacityEnhancedInstructionSet)</BaseProperties>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReferences Include="$(MSBuildThisFileDirectory)../wxWidgets/build/msw/wx_vc12.sln">
+    <ProjectReferencesWx Include="$(MSBuildThisFileDirectory)../wxWidgets/build/msw/wx_vc12.sln">
       <Properties>Configuration=$(Configuration);wxCompilerPrefix=$(AudacityCompilerPrefix);WholeProgramOptimization=true;ForceStaticRuntime=true;$(BaseProperties)</Properties>
-    </ProjectReferences>
+    </ProjectReferencesWx>
+    <wxTargets Include="adv" />
+    <wxTargets Include="base" />
+    <wxTargets Include="core" />
+    <wxTargets Include="html" />
+    <wxTargets Include="net" />
+    <wxTargets Include="qa" />
+    <wxTargets Include="wxexpat" />
+    <wxTargets Include="wxjpeg" />
+    <wxTargets Include="wxpng" />
+    <wxTargets Include="wxtiff" />
+    <wxTargets Include="wxzlib" />
     <ProjectReferences Include="$(MSBuildThisFileDirectory)audacity.sln">
       <Properties>Configuration=$(AudacityConfiguration);AudacityPlatformToolset=$(AudacityCompilerPrefix);AudacityWxCompilerPrefix=$(AudacityCompilerPrefix);$(BaseProperties)</Properties>
     </ProjectReferences>
@@ -46,10 +57,11 @@
     <Copy Condition="!Exists('$(MSBuildThisFileDirectory)..\wxWidgets\include\wx\msw\setup.h')"
       SourceFiles="$(MSBuildThisFileDirectory)..\wxWidgets\include\wx\msw\setup0.h"
       DestinationFiles="$(MSBuildThisFileDirectory)..\wxWidgets\include\wx\msw\setup.h" />
-    <MSBuild Projects="@(ProjectReferences)" Targets="Build" />
+    <MSBuild Projects="@(ProjectReferencesWx)" Targets="@(wxTargets)" BuildInParallel="true" />
+    <MSBuild Projects="@(ProjectReferences)" Targets="Build" BuildInParallel="true" />
   </Target>
   <Target Name="Clean">
-    <MSBuild Projects="@(ProjectReferences)" Targets="Clean" />
+    <MSBuild Projects="@(ProjectReferencesWx);@(ProjectReferences)" Targets="Clean" BuildInParallel="true" />
   </Target>
   <Target Name="Rebuild" DependsOnTargets="Clean;Build" />
 </Project>
