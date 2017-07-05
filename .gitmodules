@@ -1,4 +1,4 @@
 [submodule "wxWidgets"]
 	path = wxWidgets
 	url = https://github.com/henricj/wxWidgets.git
-	branch = audacity303
+	branch = audacity30
