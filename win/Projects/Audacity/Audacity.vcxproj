@@ -164,6 +164,7 @@
     <AudacityHeader Include="..\..\..\lib-src\lv2\lv2" />
     <AudacityHeader Include="..\..\..\lib-src\lv2\suil" />
     <AudacityHeader Include="..\..\..\lib-src\lame" />
+    <AudacityHeader Include="..\..\..\src" />
   </ItemGroup>
   <ItemGroup Label="AudacityHeaders" Condition=" '$(GSTREAMER_SDK)' != '' And Exists('$(GSTREAMER_SDK)\include') ">
     <AudacityHeader Include="$(GSTREAMER_SDK)\include\gstreamer-1.0" />
