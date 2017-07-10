@@ -38,9 +38,13 @@
     <AudacityEnhancedInstructionSet Condition="'$(Architecture)'=='avx2'">AdvancedVectorExtensions2</AudacityEnhancedInstructionSet>
     <BaseProperties Condition="'$(AudacityEnhancedInstructionSet)'!=''">$(BaseProperties);AudacityEnhancedInstructionSet=$(AudacityEnhancedInstructionSet)</BaseProperties>
   </PropertyGroup>
+  <PropertyGroup>
+    <ProjectPropertiesWx>Configuration=$(Configuration);wxCompilerPrefix=$(AudacityCompilerPrefix);ForceStaticRuntime=true;$(BaseProperties)</ProjectPropertiesWx>
+    <ProjectPropertiesWx Condition="'$(Configuration)' == 'Release'">WholeProgramOptimization=true;$(ProjectPropertiesWx)</ProjectPropertiesWx>
+  </PropertyGroup>
   <ItemGroup>
     <ProjectReferencesWx Include="$(MSBuildThisFileDirectory)../wxWidgets/build/msw/wx_vc12.sln">
-      <Properties>Configuration=$(Configuration);wxCompilerPrefix=$(AudacityCompilerPrefix);WholeProgramOptimization=true;ForceStaticRuntime=true;$(BaseProperties)</Properties>
+      <Properties>$(ProjectPropertiesWx)</Properties>
     </ProjectReferencesWx>
     <wxTargets Include="adv" />
     <wxTargets Include="base" />
