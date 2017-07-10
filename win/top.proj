@@ -61,15 +61,24 @@
       <Properties>Configuration=$(AudacityConfiguration);AudacityPlatformToolset=$(AudacityCompilerPrefix);AudacityWxCompilerPrefix=$(AudacityCompilerPrefix);$(BaseProperties)</Properties>
     </ProjectReferences>
   </ItemGroup>
-  <Target Name="Build">
+  <Target Name="BuildWx">
     <Copy Condition="!Exists('$(MSBuildThisFileDirectory)..\wxWidgets\include\wx\msw\setup.h')"
       SourceFiles="$(MSBuildThisFileDirectory)..\wxWidgets\include\wx\msw\setup0.h"
       DestinationFiles="$(MSBuildThisFileDirectory)..\wxWidgets\include\wx\msw\setup.h" />
     <MSBuild Projects="@(ProjectReferencesWx)" Targets="@(wxTargets)" BuildInParallel="true" />
+  </Target>
+  <Target Name="BuildAudacity">
     <MSBuild Projects="@(ProjectReferences)" Targets="Build" BuildInParallel="true" />
+  </Target>
+  <Target Name="CleanWx">
+    <MSBuild Projects="@(ProjectReferencesWx)" Targets="Clean" BuildInParallel="true" />
+  </Target>
+  <Target Name="CleanAudacity">
+    <MSBuild Projects="@(ProjectReferences)" Targets="Clean" BuildInParallel="true" />
   </Target>
   <Target Name="Clean">
     <MSBuild Projects="@(ProjectReferencesWx);@(ProjectReferences)" Targets="Clean" BuildInParallel="true" />
   </Target>
   <Target Name="Rebuild" DependsOnTargets="Clean;Build" />
+  <Target Name="Build" DependsOnTargets="BuildWx;BuildAudacity" />
 </Project>
