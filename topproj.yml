@@ -2,7 +2,6 @@ version: 1.0.{build}
 branches:
   only:
   - x64
-  - prefs
 image:
 - Visual Studio 2013
 #- Visual Studio 2015
