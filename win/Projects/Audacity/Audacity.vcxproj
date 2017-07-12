@@ -225,6 +225,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>AudacityHeaders.h</PrecompiledHeaderFile>
       <AdditionalOptions>/Zm150 %(AdditionalOptions)</AdditionalOptions>
+      <TreatSpecificWarningsAsErrors>4477;4701;4703;4716</TreatSpecificWarningsAsErrors>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -252,6 +253,7 @@
       <CompileAs>Default</CompileAs>
       <DisableSpecificWarnings>4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <AdditionalOptions>/Zm150 %(AdditionalOptions)</AdditionalOptions>
+      <TreatSpecificWarningsAsErrors>4477;4701;4703;4716</TreatSpecificWarningsAsErrors>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -279,6 +281,7 @@
       <CompileAs>Default</CompileAs>
       <DisableSpecificWarnings>4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <AdditionalOptions>/Zm150 %(AdditionalOptions)</AdditionalOptions>
+      <TreatSpecificWarningsAsErrors>4477;4701;4703;4716</TreatSpecificWarningsAsErrors>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -305,6 +308,7 @@
       <CompileAs>Default</CompileAs>
       <DisableSpecificWarnings>4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <AdditionalOptions>/Zm150 %(AdditionalOptions)</AdditionalOptions>
+      <TreatSpecificWarningsAsErrors>4477;4701;4703;4716</TreatSpecificWarningsAsErrors>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -332,6 +336,7 @@
       <ForcedIncludeFiles>AudacityHeaders.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <AdditionalOptions>/Zm150 %(AdditionalOptions)</AdditionalOptions>
+      <TreatSpecificWarningsAsErrors>4477;4701;4703;4716</TreatSpecificWarningsAsErrors>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -365,6 +370,7 @@
       <SDLCheck>true</SDLCheck>
       <FloatingPointModel>Fast</FloatingPointModel>
       <AdditionalOptions>/Zm150 %(AdditionalOptions)</AdditionalOptions>
+      <TreatSpecificWarningsAsErrors>4477;4701;4703;4716</TreatSpecificWarningsAsErrors>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -394,6 +400,7 @@
       <ForcedIncludeFiles>AudacityHeaders.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <AdditionalOptions>/Zm150 %(AdditionalOptions)</AdditionalOptions>
+      <TreatSpecificWarningsAsErrors>4477;4701;4703;4716</TreatSpecificWarningsAsErrors>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -426,6 +433,7 @@
       <SDLCheck>true</SDLCheck>
       <FloatingPointModel>Fast</FloatingPointModel>
       <AdditionalOptions>/Zm150 %(AdditionalOptions)</AdditionalOptions>
+      <TreatSpecificWarningsAsErrors>4477;4701;4703;4716</TreatSpecificWarningsAsErrors>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
