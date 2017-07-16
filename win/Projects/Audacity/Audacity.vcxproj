@@ -1244,6 +1244,22 @@
     <AudacityNyquistRaw Include="..\..\..\nyquist\rawwaves\sinewave.raw" />
   </ItemGroup>
   <ItemGroup>
+    <AudacityCopy Include="@(AudacityPlugins)">
+      <OutputDir>$(OutDir)Plug-Ins\</OutputDir>
+      <OutputName>%(OutputDir)%(Filename)%(Extension)</OutputName>
+    </AudacityCopy>
+    <AudacityCopy Include="@(AudacityNyquist)">
+      <OutputDir>$(OutDir)Nyquist\</OutputDir>
+      <OutputName>%(OutputDir)%(Filename)%(Extension)</OutputName>
+    </AudacityCopy>
+    <AudacityCopy Include="@(AudacityNyquistRaw)">
+      <OutputDir>$(OutDir)Nyquist\rawwaves\</OutputDir>
+      <OutputName>%(OutputDir)%(Filename)%(Extension)</OutputName>
+    </AudacityCopy>
+    <AudacityOutputPaths Include="@(AudacityCopy->'%(OutputDir)')" />
+    <AudacityOutputDirs Include="@(AudacityOutputPaths-&gt;Distinct())" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="..\..\po.rules">
       <SubType>Designer</SubType>
     </None>
@@ -1338,48 +1354,28 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
-  <Target Name="CopyPlugins" Inputs="@(AudacityPlugins)" Outputs="@(AudacityPlugins-&gt;'$(OutDir)Plug-Ins\%(Filename)%(Extension)">
-    <Copy SourceFiles="@(AudacityPlugins)" DestinationFiles="@(AudacityPlugins->'$(OutDir)Plug-Ins\%(Filename)%(Extension)')" />
+  <Target Name="AudacityCopy" Inputs="@(AudacityCopy)" Outputs="@(AudacityCopy->'%(OutputName)')">
+    <MakeDir Directories="@(AudacityOutputDirs)" />
+    <Copy SourceFiles="@(AudacityCopy)" DestinationFolder="%(OutputDir)" />
   </Target>
-  <Target Name="CopyNyquist" Inputs="@(AudacityNyquist)" Outputs="@(AudacityNyquist-&gt;'$(OutDir)Nyquist\%(Filename)%(Extension)">
-    <Copy SourceFiles="@(AudacityNyquist)" DestinationFiles="@(AudacityNyquist->'$(OutDir)Nyquist\%(Filename)%(Extension)')" />
+  <Target Name="AudacityCopyClean">
+    <Delete Files="%(AudacityCopy.OutputName)" />
+    <RemoveDir Directories="@(AudacityOutputDirs)" />
   </Target>
-  <Target Name="CopyNyquistRaw" Inputs="@(AudacityNyquistRaw)" Outputs="@(AudacityNyquistRaw-&gt;'$(OutDir)Nyquist\rawwaves\%(Filename)%(Extension)">
-    <Copy SourceFiles="@(AudacityNyquistRaw)" DestinationFiles="@(AudacityNyquistRaw->'$(OutDir)Nyquist\rawwaves\%(Filename)%(Extension)')" />
-  </Target>
-  <Target Name="CleanPlugins">
-    <Delete Files="@(AudacityPlugins->'$(OutDir)Plug-Ins\%(Filename)%(Extension)')" />
-    <RemoveDir Directories="$(OutDir)Plug-Ins\" />
-  </Target>
-  <Target Name="CleanNyquist">
-    <Delete Files="@(AudacityNyquist->'$(OutDir)Nyquist\%(Filename)%(Extension)')" />
-    <RemoveDir Directories="$(OutDir)Nyquist\" />
-  </Target>
-  <Target Name="CleanNyquistRaw">
-    <Delete Files="@(AudacityNyquistRaw->'$(OutDir)Nyquist\rawwaves\%(Filename)%(Extension)')" />
-    <RemoveDir Directories="$(OutDir)Nyquist\rawwaves\" />
-  </Target>
+  <Target Name="AudacityCopyRebuild" DependsOnTargets="AudacityCopyClean;AudacityCopy" />
   <PropertyGroup>
     <BuildDependsOn>
       $(BuildDependsOn);
-      CopyPlugins;
-      CopyNyquist;
-      CopyNyquistRaw
+      AudacityCopy
     </BuildDependsOn>
     <CleanDependsOn>
-      CleanNyquistRaw;
-      CleanNyquist;
-      CleanPlugins;
+      AudacityCopyClean;
       $(CleanDependsOn)
     </CleanDependsOn>
     <RebuildDependsOn>
-      CleanNyquistRaw;
-      CleanNyquist;
-      CleanPlugins;
+      AudacityCopyClean;
       $(RebuildDependsOn);
-      CopyPlugins;
-      CopyNyquist;
-      CopyNyquistRaw
+      AudacityCopy
     </RebuildDependsOn>
   </PropertyGroup>
 </Project>
