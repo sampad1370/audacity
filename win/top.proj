@@ -25,22 +25,24 @@
     <!-- Only enable XP support for 32-bit builds.  Don't bother for AVX and AVX2 since they require Win7 SP1 or later. -->
     <PlatformPostfix Condition="'$(Platform)'=='Win32' And '$(Configuration)' != '' And '$(Architecture)' != 'avx' And '$(Architecture)' != 'avx2'">_xp</PlatformPostfix>
     <PlatformToolset>$(BasePlatformToolset)$(PlatformPostfix)</PlatformToolset>
-    <AudacityConfiguration>Static Release</AudacityConfiguration>
-    <AudacityConfiguration Condition="'$(Configuration)'=='Debug'">Static Debug</AudacityConfiguration>
     <AudacityCompilerPrefix>$(PlatformToolset)</AudacityCompilerPrefix>
-    <BaseProperties>Platform=$(Platform);PlatformToolset=$(PlatformToolset)</BaseProperties>
+    <BaseProperties>Configuration=$(Configuration);Platform=$(Platform);PlatformToolset=$(PlatformToolset);PreferredToolArchitecture=x64</BaseProperties>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Architecture)'!='' And '$(Architecture)'!='none'">
-    <AudacityCompilerPrefix>$(AudacityCompilerPrefix)$(Architecture)</AudacityCompilerPrefix>
     <AudacityEnhancedInstructionSet Condition="'$(Architecture)'=='sse' And '$(Platform)'=='Win32'">StreamingSIMDExtensions</AudacityEnhancedInstructionSet>
     <AudacityEnhancedInstructionSet Condition="'$(Architecture)'=='sse2' And '$(Platform)'=='Win32'">StreamingSIMDExtensions2</AudacityEnhancedInstructionSet>
     <AudacityEnhancedInstructionSet Condition="'$(Architecture)'=='avx'">AdvancedVectorExtensions</AudacityEnhancedInstructionSet>
     <AudacityEnhancedInstructionSet Condition="'$(Architecture)'=='avx2'">AdvancedVectorExtensions2</AudacityEnhancedInstructionSet>
     <BaseProperties Condition="'$(AudacityEnhancedInstructionSet)'!=''">$(BaseProperties);AudacityEnhancedInstructionSet=$(AudacityEnhancedInstructionSet)</BaseProperties>
+    <AudacityCompilerPrefix Condition="'$(AudacityEnhancedInstructionSet)'!=''">$(AudacityCompilerPrefix)_$(Architecture)</AudacityCompilerPrefix>
   </PropertyGroup>
   <PropertyGroup>
-    <ProjectPropertiesWx>Configuration=$(Configuration);wxCompilerPrefix=$(AudacityCompilerPrefix);ForceStaticRuntime=true;$(BaseProperties)</ProjectPropertiesWx>
+    <AudacityCompilerPrefix Condition="'$(StaticRuntime)'=='true'">$(AudacityCompilerPrefix)_mt</AudacityCompilerPrefix>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ProjectPropertiesWx>wxCompilerPrefix=$(AudacityCompilerPrefix);$(BaseProperties)</ProjectPropertiesWx>
     <ProjectPropertiesWx Condition="'$(Configuration)' == 'Release'">WholeProgramOptimization=true;$(ProjectPropertiesWx)</ProjectPropertiesWx>
+    <ProjectPropertiesWx Condition="'$(StaticRuntime)' == 'true'">ForceStaticRuntime=true;$(ProjectPropertiesWx)</ProjectPropertiesWx>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReferencesWx Include="$(MSBuildThisFileDirectory)../wxWidgets/build/msw/wx_vc12.sln">
@@ -57,11 +59,22 @@
     <wxTargets Include="wxpng" />
     <wxTargets Include="wxtiff" />
     <wxTargets Include="wxzlib" />
+  </ItemGroup>
+  <PropertyGroup>
+    <ProjectProperties>AudacityPlatformToolset=$(AudacityCompilerPrefix);AudacityWxCompilerPrefix=$(AudacityCompilerPrefix);$(BaseProperties)</ProjectProperties>
+    <InstallerProperties>AudacityPlatformToolset=$(AudacityCompilerPrefix);AudacityWxCompilerPrefix=$(AudacityCompilerPrefix);Configuration=$(Configuration);PlatformToolset=$(PlatformToolset)</InstallerProperties>
+    <InstallerProperties Condition=" '$(Platform)'=='Win32'" >Platform=x86;$(InstallerProperties)</InstallerProperties>
+    <InstallerProperties Condition=" '$(Platform)'!='Win32'" >Platform=$(Platform);$(InstallerProperties)</InstallerProperties>
+    <InstallerProperties Condition="'$(StaticRuntime)' == 'true'">StaticRuntime=true;$(ProjectProperties)</InstallerProperties>
+  </PropertyGroup>
+  <ItemGroup>
     <ProjectReferences Include="$(MSBuildThisFileDirectory)audacity.sln">
-      <Properties>Configuration=$(AudacityConfiguration);AudacityPlatformToolset=$(AudacityCompilerPrefix);AudacityWxCompilerPrefix=$(AudacityCompilerPrefix);$(BaseProperties)</Properties>
+      <Properties>$(ProjectProperties)</Properties>
     </ProjectReferences>
+  </ItemGroup>
+  <ItemGroup>
     <InstallerReferences Condition="'$(BasePlatformToolset)'=='v141'" Include="$(MSBuildThisFileDirectory)Projects\AudacityBootstrapper\AudacityBootstrapper.wixproj">
-      <Properties>Configuration=$(AudacityConfiguration);AudacityPlatformToolset=$(AudacityCompilerPrefix);AudacityWxCompilerPrefix=$(AudacityCompilerPrefix);$(BaseProperties)</Properties>
+      <Properties>$(InstallerProperties)</Properties>
     </InstallerReferences>
   </ItemGroup>
   <Target Name="BuildWx">
@@ -85,7 +98,7 @@
   <Target Name="CleanInstaller">
     <MSBuild Projects="@(InstallerReferences)" Targets="Clean" BuildInParallel="true" />
   </Target>
-  <Target Name="Clean" DependsOnTargets="CleanAudacityInstaller">
+  <Target Name="Clean" DependsOnTargets="CleanInstaller">
     <MSBuild Projects="@(ProjectReferencesWx);@(ProjectReferences)" Targets="Clean" BuildInParallel="true" />
   </Target>
   <Target Name="Rebuild" DependsOnTargets="Clean;Build" />
