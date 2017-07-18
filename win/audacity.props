@@ -21,30 +21,6 @@
     <AudacityIntDir>$(AudacityBuildDir)obj\$(AudacityPlatformToolset)\$(Platform)\$(Configuration)\$(ProjectName)\</AudacityIntDir>
     <AudacitySetupDir>$(AudacityBuildDir)setup\$(AudacityPlatformToolset)\$(Platform)\$(Configuration)\$(ProjectName)</AudacitySetupDir>
 
-    <WXWIN Condition=" '$(WXWIN_VS2013)' != '' And Exists('$(WXWIN_VS2013)\build\msw') And '$(VisualStudioVersion)' == '12.0'">$(WXWIN_VS2013)</WXWIN>
-    <WXWIN Condition=" '$(WXWIN_VS2015)' != '' And Exists('$(WXWIN_VS2015)\build\msw') And '$(VisualStudioVersion)' == '14.0'">$(WXWIN_VS2015)</WXWIN>
-    <WXWIN Condition=" '$(WXWIN_VS2017)' != '' And Exists('$(WXWIN_VS2017)\build\msw') And '$(VisualStudioVersion)' == '15.0'">$(WXWIN_VS2017)</WXWIN>
-    <WXWIN Condition=" '$(WXWIN)' == '' ">$(MSBuildThisFileDirectory)..\wxWidgets</WXWIN>
-
-    <AudacityWxArchSuffix />
-    <AudacityWxArchSuffix Condition="'$(Platform)' == 'x64'">_x64</AudacityWxArchSuffix>
-
-    <AudacityWxSuffix>u</AudacityWxSuffix>
-    <AudacityWxSuffix Condition="'$(Configuration)' == 'Debug' Or '$(Configuration)' == 'Static Debug'">ud</AudacityWxSuffix>
-
-    <AudacityWxLibTypeSuffix>lib</AudacityWxLibTypeSuffix>
-    <AudacityWxLibTypeSuffix Condition="'$(Configuration)' == 'Debug' Or '$(Configuration)' == 'Release'">dll</AudacityWxLibTypeSuffix>
-
-    <AudacityWxToolkitPrefix Condition="'$(AudacityWxToolkitPrefix)' == ''">msw</AudacityWxToolkitPrefix>
-    <!-- <AudacityWxCompilerPrefix Condition="'$(AudacityWxCompilerPrefix)' == ''">vc</AudacityWxCompilerPrefix> -->
-    <AudacityWxCompilerPrefix Condition="'$(AudacityWxCompilerPrefix)' == ''">$(AudacityPlatformToolset)</AudacityWxCompilerPrefix>
-    <AudacityWxCfg Condition="'$(AudacityWxConfig)' == ''"></AudacityWxCfg>
-
-    <AudacityWxLibDirName>$(AudacityWxCompilerPrefix)$(AudacityWxArchSuffix)_$(AudacityWxLibTypeSuffix)$(AudacityWxCfg)</AudacityWxLibDirName>
-    <AudacityWxLibDir>$(WXWIN)\lib\$(AudacityWxLibDirName)</AudacityWxLibDir>
-    <AudacityWxIncludeDir Condition="'$(AudacityWxIncludeDir)' == ''">$(WXWIN)\include</AudacityWxIncludeDir>
-    <AudacityWxToolkitIncludeDir Condition="'$(AudacityWxToolkitIncludeDir)' == ''">$(AudacityWxLibDir)\$(AudacityWxToolkitPrefix)$(AudacityWxSuffix)</AudacityWxToolkitIncludeDir>
-
     <AudacityPackages Condition="'$(AudacityPackages)' == ''">$(MSBuildThisFileDirectory)packages\</AudacityPackages>
   </PropertyGroup>
 </Project>
