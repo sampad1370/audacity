@@ -62,20 +62,11 @@
   </ItemGroup>
   <PropertyGroup>
     <ProjectProperties>AudacityPlatformToolset=$(AudacityCompilerPrefix);AudacityWxCompilerPrefix=$(AudacityCompilerPrefix);$(BaseProperties)</ProjectProperties>
-    <InstallerProperties>AudacityPlatformToolset=$(AudacityCompilerPrefix);AudacityWxCompilerPrefix=$(AudacityCompilerPrefix);Configuration=$(Configuration);PlatformToolset=$(PlatformToolset)</InstallerProperties>
-    <InstallerProperties Condition=" '$(Platform)'=='Win32'" >Platform=x86;$(InstallerProperties)</InstallerProperties>
-    <InstallerProperties Condition=" '$(Platform)'!='Win32'" >Platform=$(Platform);$(InstallerProperties)</InstallerProperties>
-    <InstallerProperties Condition="'$(StaticRuntime)' == 'true'">StaticRuntime=true;$(ProjectProperties)</InstallerProperties>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReferences Include="$(MSBuildThisFileDirectory)audacity.sln">
+    <ProjectReferences Include="$(MSBuildThisFileDirectory)audacity - setup.sln">
       <Properties>$(ProjectProperties)</Properties>
     </ProjectReferences>
-  </ItemGroup>
-  <ItemGroup>
-    <InstallerReferences Condition="'$(BasePlatformToolset)'=='v141'" Include="$(MSBuildThisFileDirectory)Projects\AudacityBootstrapper\AudacityBootstrapper.wixproj">
-      <Properties>$(InstallerProperties)</Properties>
-    </InstallerReferences>
   </ItemGroup>
   <Target Name="BuildWx">
     <Copy Condition="!Exists('$(MSBuildThisFileDirectory)..\wxWidgets\include\wx\msw\setup.h')"
@@ -86,19 +77,13 @@
   <Target Name="BuildAudacity">
     <MSBuild Projects="@(ProjectReferences)" Targets="Build" BuildInParallel="true" />
   </Target>
-  <Target Name="BuildInstaller">
-    <MSBuild Projects="@(InstallerReferences)" Targets="Build" BuildInParallel="true" />
-  </Target>
   <Target Name="CleanWx">
     <MSBuild Projects="@(ProjectReferencesWx)" Targets="Clean" BuildInParallel="true" />
   </Target>
   <Target Name="CleanAudacity">
     <MSBuild Projects="@(ProjectReferences)" Targets="Clean" BuildInParallel="true" />
   </Target>
-  <Target Name="CleanInstaller">
-    <MSBuild Projects="@(InstallerReferences)" Targets="Clean" BuildInParallel="true" />
-  </Target>
-  <Target Name="Clean" DependsOnTargets="CleanInstaller">
+  <Target Name="Clean">
     <MSBuild Projects="@(ProjectReferencesWx);@(ProjectReferences)" Targets="Clean" BuildInParallel="true" />
   </Target>
   <Target Name="Rebuild" DependsOnTargets="Clean;Build" />
