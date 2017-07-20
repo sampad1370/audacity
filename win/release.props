@@ -10,7 +10,7 @@
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <RuntimeLibrary Condition="'Static Runtime'=='true'">MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary Condition="'$(StaticRuntime)'=='true'">MultiThreaded</RuntimeLibrary>
       <EnableEnhancedInstructionSet Condition="'$(AudacityEnhancedInstructionSet)'!=''">$(AudacityEnhancedInstructionSet)</EnableEnhancedInstructionSet>
       <AdditionalOptions>/Gw %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
