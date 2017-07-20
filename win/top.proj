@@ -1,5 +1,9 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
     DefaultTargets="Build">
+  <PropertyGroup>
+    <!-- Temporary AppVeyor duct tape -->
+    <StaticRuntime Condition=" '$(APPVEYOR)'=='True' ">true</StaticRuntime>
+  </PropertyGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' != ''">
       <PropertyGroup>
