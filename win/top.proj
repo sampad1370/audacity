@@ -64,7 +64,7 @@
     <ProjectProperties>AudacityPlatformToolset=$(AudacityCompilerPrefix);AudacityWxCompilerPrefix=$(AudacityCompilerPrefix);$(BaseProperties)</ProjectProperties>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReferences Include="$(MSBuildThisFileDirectory)audacity - setup.sln">
+    <ProjectReferences Include="$(MSBuildThisFileDirectory)audacity.sln">
       <Properties>$(ProjectProperties)</Properties>
     </ProjectReferences>
   </ItemGroup>
