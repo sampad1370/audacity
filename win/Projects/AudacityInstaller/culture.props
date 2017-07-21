@@ -4,6 +4,12 @@
     <DefaultCulture>en-US</DefaultCulture>
     <DefaultCulturePath>en-US,en</DefaultCulturePath>
     <DefaultCultureFile>Locale\$(DefaultCulture).wxl</DefaultCultureFile>
+    <NeutralCultureFile>Locale\neutral.wxl</NeutralCultureFile>
     <AudacityProductCode>$([System.Guid]::NewGuid())</AudacityProductCode>
   </PropertyGroup>
+  <ItemGroup>
+    <ExcludeAudacityCultureFile Include="$(NeutralCultureFile)" />
+    <ExcludeAudacityCulture Include="$(NeutralCultureFile)" />
+    <ExcludeAudacityTorch Include="@(ExcludeCultureFile);$(DefaultCultureFile)" />
+  </ItemGroup>
 </Project>
