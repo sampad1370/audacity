@@ -1,13 +1,14 @@
 version: 1.0.{build}
 branches:
   only:
-  - x64
+  - arm64
 image:
 #- Visual Studio 2013
 #- Visual Studio 2015
 - Visual Studio 2017
 configuration: Release
 platform:
+- ARM64
 install:
 - git submodule update --init --recursive --jobs 4
 before_build:
@@ -27,40 +28,4 @@ before_package:
     del /S win\build\*.exp
 artifacts:
 - path: win\build\bin
-  name: 'audacity-%APPVEYOR_REPO_BRANCH%-%PLATFORM%_%Architecture%-%APPVEYOR_BUILD_VERSION%-%APPVEYOR_REPO_COMMIT%-%APPVEYOR_BUILD_WORKER_IMAGE%'
-
-for:
--
-  branches:
-    only:
-    - x64
-  platform:
-  - x64
-  - Win32
-  environment:
-    matrix:
-    - Architecture: default
-    - Architecture: avx
-    - Architecture: avx2
-    - Architecture: sse2
-    - Architecture: fpu
-  matrix:
-    fast_finish: true
-    exclude:
-      - image: Visual Studio 2013
-        platform: x64
-      - image: Visual Studio 2013
-        Architecture: avx
-      - image: Visual Studio 2013
-        Architecture: avx2
-      - image: Visual Studio 2013
-        Architecture: sse2
-      - image: Visual Studio 2017
-        Architecture: avx2
-        platform: Win32
-      - platform: x64
-        Architecture: sse2
-      - platform: x64
-        Architecture: fpu
-      - platform: Win32
-        Architecture: default
+  name: 'audacity-%APPVEYOR_REPO_BRANCH%-%PLATFORM%-%APPVEYOR_BUILD_VERSION%-%APPVEYOR_REPO_COMMIT%-%APPVEYOR_BUILD_WORKER_IMAGE%'
