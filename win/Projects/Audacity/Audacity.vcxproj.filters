@@ -2338,4 +2338,9 @@
       <Filter>plug-ins</Filter>
     </AudacityPlugIns>
   </ItemGroup>
+  <ItemGroup>
+    <Manifest Include="..\..\Audacity.exe.manifest">
+      <Filter>Resources</Filter>
+    </Manifest>
+  </ItemGroup>
 </Project>
