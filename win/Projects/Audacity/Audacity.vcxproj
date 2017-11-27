@@ -275,7 +275,6 @@
       <CompileAs>Default</CompileAs>
       <DisableSpecificWarnings>4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <ForcedIncludeFiles>AudacityHeaders.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <AdditionalOptions>/Zm150 %(AdditionalOptions)</AdditionalOptions>
       <TreatSpecificWarningsAsErrors>4477;4701;4703;4716;%(TreatSpecificWarningsAsErrors)</TreatSpecificWarningsAsErrors>
       <WarningLevel>Level4</WarningLevel>
@@ -332,9 +331,6 @@
       <CompileAs>Default</CompileAs>
       <DisableSpecificWarnings>4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <ForcedIncludeFiles>AudacityHeaders.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-      <SDLCheck>true</SDLCheck>
-      <FloatingPointModel>Fast</FloatingPointModel>
       <AdditionalOptions>/Zm150 %(AdditionalOptions)</AdditionalOptions>
       <TreatSpecificWarningsAsErrors>4477;4701;4703;4716</TreatSpecificWarningsAsErrors>
     </ClCompile>
@@ -362,7 +358,6 @@
       <CompileAs>Default</CompileAs>
       <DisableSpecificWarnings>4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <ForcedIncludeFiles>AudacityHeaders.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <AdditionalOptions>/Zm150 %(AdditionalOptions)</AdditionalOptions>
       <TreatSpecificWarningsAsErrors>4477;4701;4703;4716;%(TreatSpecificWarningsAsErrors)</TreatSpecificWarningsAsErrors>
       <WarningLevel>Level4</WarningLevel>
