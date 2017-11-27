@@ -11,7 +11,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <FloatingPointModel>Fast</FloatingPointModel>
       <WarningLevel>Level3</WarningLevel>
-      <DisableSpecificWarnings>4275</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4018;4244;4267;4275</DisableSpecificWarnings>
       <PreprocessorDefinitions>NTDDI_VERSION=$(AudacityNtddiVersion);_WIN32_WINNT=$(AudacityWin32Winnt);%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>
