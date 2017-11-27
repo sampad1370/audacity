@@ -22,5 +22,14 @@
     <AudacitySetupDir>$(AudacityBuildDir)setup\$(AudacityPlatformToolset)\$(Platform)\$(Configuration)\$(ProjectName)</AudacitySetupDir>
 
     <AudacityPackages Condition="'$(AudacityPackages)' == ''">$(MSBuildThisFileDirectory)packages\</AudacityPackages>
+
+    <!--
+	 Per Andrew Pardoe's comments, the Win 10 SDKs support targeting Vista SP2 and later:
+	 https://blogs.msdn.microsoft.com/vcblog/2017/11/15/msvc-conformance-improvements-in-visual-studio-2017-version-15-5/
+      -->
+    <AudacityNtddiVersion>NTDDI_VISTASP2</AudacityNtddiVersion>
+    <AudacityWin32Winnt>_WIN32_WINNT_VISTA</AudacityWin32Winnt>
+    <AudacityNtddiVersion Condition="'$(AudacityPlatformPostfix)' == '_xp'">NTDDI_WINXPSP2</AudacityNtddiVersion>
+    <AudacityWin32Winnt Condition="'$(AudacityPlatformPostfix)' == '_xp'">_WIN32_WINNT_WINXP</AudacityWin32Winnt>
   </PropertyGroup>
 </Project>
