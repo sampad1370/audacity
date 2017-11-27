@@ -201,7 +201,9 @@ typedef float v4sf;
 #  define VMADD(a,b,c) ((a)*(b)+(c))
 #  define VSUB(a,b) ((a)-(b))
 #  define LD_PS1(p) (p)
-#  define VALIGNED(ptr) ((((long)(ptr)) & 0x3) == 0)
+#  define VALIGNED(ptr) ((((intptr_t)(ptr)) & 0x3) == 0)
+#  define INTERLEAVE2(in1, in2, out1, out2) assert(0)
+#  define UNINTERLEAVE2(in1, in2, out1, out2) assert(0)
 #endif
 
 /* shortcuts for complex multiplcations */
