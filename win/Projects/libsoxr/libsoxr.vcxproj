@@ -139,7 +139,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
     <ClCompile>
       <AdditionalIncludeDirectories>..\..\..\lib-src\libsoxr\msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DEBUG;_USE_MATH_DEFINES;_CRT_SECURE_NO_WARNINGS;PFFFT_SIMD_DISABLE;SOXR_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;PFFFT_SIMD_DISABLE;_USE_MATH_DEFINES;_CRT_SECURE_NO_WARNINGS;PFFFT_SIMD_DISABLE;SOXR_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAs>Default</CompileAs>
     </ClCompile>
   </ItemDefinitionGroup>
