@@ -1,8 +1,16 @@
 @setlocal
 
+@nuget restore %~dp0audacity.sln
+@if %errorlevel% equ 9009 (
+   @echo nuget.exe was not found in the PATH
+   @echo This may cause the locale build to fail.
+   @echo The Visual Studio IDE can restore any missing packages or
+   @echo nuget.exe can be found here: https://nuget.org/downloads
+   )
+
 @if exist "%VS150COMNTOOLS%VsDevCmd.bat" goto skipwhere
 
-@set VSWHERE="%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe"
+@if not defined VSWHWERE set VSWHERE="%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe"
 
 @if not exist %VSWHERE% set VSWHERE="%ProgramFiles%\Microsoft Visual Studio\Installer\vswhere.exe"
 
