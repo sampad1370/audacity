@@ -42,6 +42,8 @@
   </PropertyGroup>
   <PropertyGroup>
     <AudacityCompilerPrefix Condition="'$(StaticRuntime)'=='true'">$(AudacityCompilerPrefix)_mt</AudacityCompilerPrefix>
+    <AudacityTargetPlatformVersion>10.0.16299.0</AudacityTargetPlatformVersion>
+    <BaseProperties Condition="'$(PlatformPostfix)' != '_xp'">WindowsTargetPlatformVersion=$(AudacityTargetPlatformVersion);$(BaseProperties)</BaseProperties> 
   </PropertyGroup>
   <PropertyGroup>
     <ProjectPropertiesWx>wxCompilerPrefix=$(AudacityCompilerPrefix);$(BaseProperties)</ProjectPropertiesWx>
