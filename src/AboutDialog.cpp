@@ -354,7 +354,7 @@ visit our [[https://forum.audacityteam.org/|forum]].");
       GetCreditsByRole(roleContributor) +
 
       (translatorCredits.empty()
-         ? wxT("")
+          ? wxString{ wxT("") }
          : (wxT("<p><b>") + _("Translators") + wxT("</b><br>") +
             translatorCredits)) +
 
