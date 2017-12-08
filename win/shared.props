@@ -13,6 +13,8 @@
       <WarningLevel>Level3</WarningLevel>
       <DisableSpecificWarnings>4018;4244;4267;4275</DisableSpecificWarnings>
       <PreprocessorDefinitions>_CRT_NONSTDC_NO_DEPRECATE;NTDDI_VERSION=$(AudacityNtddiVersion);_WIN32_WINNT=$(AudacityWin32Winnt);%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>$(AudacityConformanceMode)</ConformanceMode>
+      <LanguageStandard>$(AudacityLanguageStandard)</LanguageStandard>
     </ClCompile>
     <Link>
       <AdditionalOptions>/IGNORE:4221 %(AdditionalOptions)</AdditionalOptions>
