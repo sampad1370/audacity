@@ -23,6 +23,12 @@
 
     <AudacityPackages Condition="'$(AudacityPackages)' == ''">$(MSBuildThisFileDirectory)packages\</AudacityPackages>
 
+    <!-- The Win7 SDK isn't standards compliant -->
+    <AudacityConformanceMode>false</AudacityConformanceMode>
+    <AudacityLanguageStandard></AudacityLanguageStandard>
+    <AudacityConformanceMode Condition="'$(AudacityPlatformPostfix)' != '_xp'">true</AudacityConformanceMode>
+    <AudacityLanguageStandard Condition="'$(AudacityPlatformPostfix)' != '_xp'">stdcpp17</AudacityLanguageStandard>
+
     <!--
 	 Per Andrew Pardoe's comments, the Win 10 SDKs support targeting Vista SP2 and later:
 	 https://blogs.msdn.microsoft.com/vcblog/2017/11/15/msvc-conformance-improvements-in-visual-studio-2017-version-15-5/
