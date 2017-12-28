@@ -32,7 +32,8 @@
     <AudacityCompilerPrefix>$(PlatformToolset)</AudacityCompilerPrefix>
     <BaseProperties>Configuration=$(Configuration);Platform=$(Platform);PlatformToolset=$(PlatformToolset);PreferredToolArchitecture=x64</BaseProperties>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Architecture)'!='' And '$(Architecture)'!='none'">
+  <PropertyGroup Condition="'$(Architecture)'!=''">
+    <AudacityEnhancedInstructionSet Condition="'$(Architecture)'=='none' And '$(Platform)'=='Win32'">NoExtensions</AudacityEnhancedInstructionSet>
     <AudacityEnhancedInstructionSet Condition="'$(Architecture)'=='sse' And '$(Platform)'=='Win32'">StreamingSIMDExtensions</AudacityEnhancedInstructionSet>
     <AudacityEnhancedInstructionSet Condition="'$(Architecture)'=='sse2' And '$(Platform)'=='Win32'">StreamingSIMDExtensions2</AudacityEnhancedInstructionSet>
     <AudacityEnhancedInstructionSet Condition="'$(Architecture)'=='avx'">AdvancedVectorExtensions</AudacityEnhancedInstructionSet>
