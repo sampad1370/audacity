@@ -180,7 +180,7 @@ win/Debug
 win/Release
 win/Projects/*/Debug
 win/Projects/*/Release
-win/.vs/
+.vs/
 win/packages
 win-alt-build
 win/build
