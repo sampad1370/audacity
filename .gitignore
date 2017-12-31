@@ -181,7 +181,7 @@ win/Debug
 win/Release
 win/Projects/*/Debug
 win/Projects/*/Release
-win/.vs/
+.vs/
 win/packages
 win/.nuget
 win-alt-build
