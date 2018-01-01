@@ -16,8 +16,6 @@
     </ClCompile>
     <Link>
       <OptimizeReferences>true</OptimizeReferences>
-    </Link>
-    <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
     </Link>
   </ItemDefinitionGroup>
