@@ -41,6 +41,7 @@
     <AudacityBuild>$(AudacityPlatformToolset)</AudacityBuild>
     <AudacityBuild Condition="'$(AudacityEnhancedInstructionSet)'!=''">$(AudacityBuild)_$(Architecture)</AudacityBuild>
     <AudacityBuild Condition="'$(StaticRuntime)'=='true'">$(AudacityBuild)_mt</AudacityBuild>
+    <AudacityBuild Condition="'$(DllExport)'=='false'">$(AudacityBuild)_noexport</AudacityBuild>
 
     <AudacityBuildDir>$(MSBuildThisFileDirectory)build\</AudacityBuildDir>
     <AudacityOutDir>$(AudacityBuildDir)bin\$(AudacityBuild)\$(Platform)\$(Configuration)\</AudacityOutDir>
@@ -51,6 +52,8 @@
     <AudacitySetupDir>$(AudacityBuildDir)setup\$(AudacityBUild)\$(Platform)\$(Configuration)\$(ProjectName)</AudacitySetupDir>
 
     <AudacityPackages Condition="'$(AudacityPackages)' == ''">$(MSBuildThisFileDirectory)packages\</AudacityPackages>
+
+    <AudacityDllApi Condition="'$(DllExport)'=='false'">AUDACITY_DLL_API=;</AudacityDllApi>
 
     <!-- The Win7 SDK isn't standards compliant -->
     <AudacityConformanceMode>false</AudacityConformanceMode>
