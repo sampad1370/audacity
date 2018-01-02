@@ -66,5 +66,7 @@ for:
     - post-vs2013
   platform:
   - Win32
+  environment:
+    WXWIN: '%APPVEYOR_BUILD_FOLDER%\wxWidgets'
 
 
