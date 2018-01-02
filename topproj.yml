@@ -9,8 +9,6 @@ image:
 - Visual Studio 2017
 configuration: Release
 platform:
-matrix:
-  fast_finish: true
 install:
 - git submodule update --init wxWidgets
 before_build:
@@ -46,6 +44,7 @@ for:
     - Architecture: avx2
     - Architecture: sse2
   matrix:
+    fast_finish: true
     exclude:
       - image: Visual Studio 2013
         platform: x64
@@ -68,5 +67,8 @@ for:
   - Win32
   environment:
     WXWIN: '%APPVEYOR_BUILD_FOLDER%\wxWidgets'
-
+  matrix:
+    fast_finish: false
+  before_build:
+    - 'echo WXWIN=%WXWIN%'
 
