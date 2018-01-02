@@ -170,9 +170,8 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(AudacityWxToolkitIncludeDir);$(AudacityWxIncludeDir);..\..;..\..\..\include;$(AudacityProjectHeaders);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PreprocessorDefinitions>$(AudacityDllApi);BUILDING_AUDACITY;FLAC__NO_DLL;XML_STATIC;__STDC_CONSTANT_MACROS;WXINTL_NO_GETTEXT_MACRO;NDEBUG;WIN32;STRICT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..;..\..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>TARGET_PLATFORM_DISPLAY_NAME="$(TargetPlatformDisplayName)";RUNTIME_LIBRARY_VERSION_NAME="%(RuntimeLibrary)";$(AudacityDllApi);BUILDING_AUDACITY;FLAC__NO_DLL;XML_STATIC;__STDC_CONSTANT_MACROS;WXINTL_NO_GETTEXT_MACRO;NDEBUG;WIN32;STRICT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>AudacityHeaders.h</PrecompiledHeaderFile>
       <ForcedIncludeFiles>AudacityHeaders.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -199,8 +198,9 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(AudacityWxToolkitIncludeDir);$(AudacityWxIncludeDir);..\..;..\..\..\include;$(AudacityProjectHeaders);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>$(AudacityDllApi);BUILDING_AUDACITY;FLAC__NO_DLL;XML_STATIC;__STDC_CONSTANT_MACROS;WXINTL_NO_GETTEXT_MACRO;NDEBUG;WIN32;STRICT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\..;..\..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>TARGET_PLATFORM_DISPLAY_NAME="$(TargetPlatformDisplayName)";RUNTIME_LIBRARY_VERSION_NAME="%(RuntimeLibrary)";$(AudacityDllApi);BUILDING_AUDACITY;FLAC__NO_DLL;XML_STATIC;__STDC_CONSTANT_MACROS;WXINTL_NO_GETTEXT_MACRO;NDEBUG;WIN32;STRICT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>AudacityHeaders.h</PrecompiledHeaderFile>
       <ForcedIncludeFiles>AudacityHeaders.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -227,7 +227,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(AudacityWxToolkitIncludeDir);$(AudacityWxIncludeDir);..\..;..\..\..\include;$(AudacityProjectHeaders);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..;..\..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>BUILDING_AUDACITY;FLAC__NO_DLL;XML_STATIC;__STDC_CONSTANT_MACROS;WXINTL_NO_GETTEXT_MACRO;WXUSINGDLL;__WXMSW__;__WXDEBUG__;_DEBUG;WIN32;STRICT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>AudacityHeaders.h</PrecompiledHeaderFile>
@@ -259,7 +259,7 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>..\..;..\..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>$(AudacityDllApi);BUILDING_AUDACITY;FLAC__NO_DLL;XML_STATIC;__STDC_CONSTANT_MACROS;_DEBUG;WIN32;STRICT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>TARGET_PLATFORM_DISPLAY_NAME="$(TargetPlatformDisplayName)";RUNTIME_LIBRARY_VERSION_NAME="%(RuntimeLibrary)";$(AudacityDllApi);BUILDING_AUDACITY;FLAC__NO_DLL;XML_STATIC;__STDC_CONSTANT_MACROS;WXINTL_NO_GETTEXT_MACRO;_DEBUG;WIN32;STRICT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>AudacityHeaders.h</PrecompiledHeaderFile>
       <CompileAs>Default</CompileAs>
@@ -288,7 +288,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(AudacityWxToolkitIncludeDir);$(AudacityWxIncludeDir);..\..;..\..\..\include;$(AudacityProjectHeaders);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..;..\..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>BUILDING_AUDACITY;FLAC__NO_DLL;XML_STATIC;__STDC_CONSTANT_MACROS;WXINTL_NO_GETTEXT_MACRO;WXUSINGDLL;__WXMSW__;__WXDEBUG__;_DEBUG;WIN32;STRICT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>AudacityHeaders.h</PrecompiledHeaderFile>
@@ -319,7 +319,7 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>..\..;..\..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>$(AudacityDllApi);BUILDING_AUDACITY;FLAC__NO_DLL;XML_STATIC;__STDC_CONSTANT_MACROS;_DEBUG;WIN32;STRICT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>TARGET_PLATFORM_DISPLAY_NAME="$(TargetPlatformDisplayName)";RUNTIME_LIBRARY_VERSION_NAME="%(RuntimeLibrary)";$(AudacityDllApi);BUILDING_AUDACITY;FLAC__NO_DLL;XML_STATIC;__STDC_CONSTANT_MACROS;WXINTL_NO_GETTEXT_MACRO;_DEBUG;WIN32;STRICT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>AudacityHeaders.h</PrecompiledHeaderFile>
       <CompileAs>Default</CompileAs>
