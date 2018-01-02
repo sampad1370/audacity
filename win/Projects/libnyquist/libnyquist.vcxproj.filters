@@ -33,6 +33,14 @@
     </Filter>
     <Filter Include="nyquist\nyqstk\src">
       <UniqueIdentifier>{8aef0bda-5dca-454d-9a0f-02cb77eeff56}</UniqueIdentifier>
+      <Extensions>cpp</Extensions>
+    </Filter>
+    <Filter Include="nyquist\nyqstk\inc">
+      <UniqueIdentifier>{7ba4e600-eea4-4985-b40c-b173a903df0b}</UniqueIdentifier>
+      <Extensions>h</Extensions>
+    </Filter>
+    <Filter Include="nyquist\nyqstk\pch">
+      <UniqueIdentifier>{5330c71d-3dc9-4596-835e-823c3af2dade}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -651,6 +659,9 @@
     <ClCompile Include="..\..\..\lib-src\libnyquist\nyquist\tran\whiteg.c">
       <Filter>nyquist\tran</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\lib-src\libnyquist\nyquist\nyqstk\src\stdafx.cpp">
+      <Filter>nyquist\nyqstk\pch</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\lib-src\libnyquist\nyquist\ffts\src\fftext.h">
@@ -676,6 +687,140 @@
       <Filter>nyquist\nyqsrc</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\lib-src\libnyquist\RngSupport.h" />
+    <ClInclude Include="..\..\..\lib-src\libnyquist\nyquist\nyqstk\globals.h">
+      <Filter>nyquist\nyqstk\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\lib-src\libnyquist\nyquist\nyqstk\instr.h">
+      <Filter>nyquist\nyqstk\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\lib-src\libnyquist\nyquist\nyqstk\stkinit.h">
+      <Filter>nyquist\nyqstk\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\lib-src\libnyquist\nyquist\nyqstk\stkint.h">
+      <Filter>nyquist\nyqstk\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\lib-src\libnyquist\nyquist\nyqstk\include\ADSR.h">
+      <Filter>nyquist\nyqstk\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\lib-src\libnyquist\nyquist\nyqstk\include\BandedWG.h">
+      <Filter>nyquist\nyqstk\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\lib-src\libnyquist\nyquist\nyqstk\include\BiQuad.h">
+      <Filter>nyquist\nyqstk\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\lib-src\libnyquist\nyquist\nyqstk\include\Bowed.h">
+      <Filter>nyquist\nyqstk\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\lib-src\libnyquist\nyquist\nyqstk\include\BowTable.h">
+      <Filter>nyquist\nyqstk\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\lib-src\libnyquist\nyquist\nyqstk\include\Chorus.h">
+      <Filter>nyquist\nyqstk\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\lib-src\libnyquist\nyquist\nyqstk\include\Clarinet.h">
+      <Filter>nyquist\nyqstk\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\lib-src\libnyquist\nyquist\nyqstk\include\Delay.h">
+      <Filter>nyquist\nyqstk\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\lib-src\libnyquist\nyquist\nyqstk\include\DelayA.h">
+      <Filter>nyquist\nyqstk\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\lib-src\libnyquist\nyquist\nyqstk\include\DelayL.h">
+      <Filter>nyquist\nyqstk\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\lib-src\libnyquist\nyquist\nyqstk\include\Effect.h">
+      <Filter>nyquist\nyqstk\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\lib-src\libnyquist\nyquist\nyqstk\include\Envelope.h">
+      <Filter>nyquist\nyqstk\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\lib-src\libnyquist\nyquist\nyqstk\include\FileRead.h">
+      <Filter>nyquist\nyqstk\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\lib-src\libnyquist\nyquist\nyqstk\include\FileWvIn.h">
+      <Filter>nyquist\nyqstk\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\lib-src\libnyquist\nyquist\nyqstk\include\Filter.h">
+      <Filter>nyquist\nyqstk\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\lib-src\libnyquist\nyquist\nyqstk\include\Flute.h">
+      <Filter>nyquist\nyqstk\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\lib-src\libnyquist\nyquist\nyqstk\include\Function.h">
+      <Filter>nyquist\nyqstk\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\lib-src\libnyquist\nyquist\nyqstk\include\Generator.h">
+      <Filter>nyquist\nyqstk\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\lib-src\libnyquist\nyquist\nyqstk\include\Instrmnt.h">
+      <Filter>nyquist\nyqstk\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\lib-src\libnyquist\nyquist\nyqstk\include\JCRev.h">
+      <Filter>nyquist\nyqstk\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\lib-src\libnyquist\nyquist\nyqstk\include\JetTable.h">
+      <Filter>nyquist\nyqstk\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\lib-src\libnyquist\nyquist\nyqstk\include\Mandolin.h">
+      <Filter>nyquist\nyqstk\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\lib-src\libnyquist\nyquist\nyqstk\include\Modal.h">
+      <Filter>nyquist\nyqstk\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\lib-src\libnyquist\nyquist\nyqstk\include\ModalBar.h">
+      <Filter>nyquist\nyqstk\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\lib-src\libnyquist\nyquist\nyqstk\include\Noise.h">
+      <Filter>nyquist\nyqstk\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\lib-src\libnyquist\nyquist\nyqstk\include\NRev.h">
+      <Filter>nyquist\nyqstk\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\lib-src\libnyquist\nyquist\nyqstk\include\OnePole.h">
+      <Filter>nyquist\nyqstk\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\lib-src\libnyquist\nyquist\nyqstk\include\OneZero.h">
+      <Filter>nyquist\nyqstk\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\lib-src\libnyquist\nyquist\nyqstk\include\PitShift.h">
+      <Filter>nyquist\nyqstk\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\lib-src\libnyquist\nyquist\nyqstk\include\PluckTwo.h">
+      <Filter>nyquist\nyqstk\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\lib-src\libnyquist\nyquist\nyqstk\include\PoleZero.h">
+      <Filter>nyquist\nyqstk\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\lib-src\libnyquist\nyquist\nyqstk\include\PRCRev.h">
+      <Filter>nyquist\nyqstk\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\lib-src\libnyquist\nyquist\nyqstk\include\ReedTabl.h">
+      <Filter>nyquist\nyqstk\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\lib-src\libnyquist\nyquist\nyqstk\include\ReedTable.h">
+      <Filter>nyquist\nyqstk\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\lib-src\libnyquist\nyquist\nyqstk\include\Saxofony.h">
+      <Filter>nyquist\nyqstk\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\lib-src\libnyquist\nyquist\nyqstk\include\SineWave.h">
+      <Filter>nyquist\nyqstk\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\lib-src\libnyquist\nyquist\nyqstk\include\Sitar.h">
+      <Filter>nyquist\nyqstk\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\lib-src\libnyquist\nyquist\nyqstk\include\Stk.h">
+      <Filter>nyquist\nyqstk\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\lib-src\libnyquist\nyquist\nyqstk\include\WaveLoop.h">
+      <Filter>nyquist\nyqstk\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\lib-src\libnyquist\nyquist\nyqstk\include\WvIn.h">
+      <Filter>nyquist\nyqstk\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\lib-src\libnyquist\nyquist\nyqstk\src\stdafx.h">
+      <Filter>nyquist\nyqstk\pch</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
-
