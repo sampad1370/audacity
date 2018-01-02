@@ -10,6 +10,8 @@
 
 @if exist "%VS150COMNTOOLS%VsDevCmd.bat" goto skipwhere
 
+@if defined VSWHERE if not exist %VSWHERE% set "VSWHERE="
+
 @if not defined VSWHWERE set VSWHERE="%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe"
 
 @if not exist %VSWHERE% set VSWHERE="%ProgramFiles%\Microsoft Visual Studio\Installer\vswhere.exe"
