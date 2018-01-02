@@ -2,36 +2,15 @@ version: 1.0.{build}
 branches:
   only:
   - x64
+  - post-vs2013
 image:
-#- Visual Studio 2013
+- Visual Studio 2013
 #- Visual Studio 2015
 - Visual Studio 2017
 configuration: Release
 platform:
-- x64
-- Win32
-environment:
- matrix:
-   - Architecture: none
-   - Architecture: avx
-   - Architecture: avx2
-   - Architecture: sse2
 matrix:
   fast_finish: true
-  exclude:
-    - image: Visual Studio 2013
-      platform: x64
-    - image: Visual Studio 2013
-      Architecture: avx
-    - image: Visual Studio 2013
-      Architecture: avx2
-    - image: Visual Studio 2013
-      Architecture: sse2
-    - image: Visual Studio 2017
-      Architecture: avx2
-      platform: Win32
-    - platform: x64
-      Architecture: sse2
 install:
 - git submodule update --init wxWidgets
 before_build:
@@ -50,4 +29,42 @@ before_package:
     del /S win\build\*.exp
 artifacts:
 - path: win\build\bin
-  name: 'audacity-%PLATFORM%_%Architecture%-%APPVEYOR_BUILD_VERSION%-%APPVEYOR_REPO_COMMIT%-%APPVEYOR_BUILD_WORKER_IMAGE%'
+  name: 'audacity-%APPVEYOR_REPO_BRANCH%-%PLATFORM%_%Architecture%-%APPVEYOR_BUILD_VERSION%-%APPVEYOR_REPO_COMMIT%-%APPVEYOR_BUILD_WORKER_IMAGE%'
+
+for:
+-
+  branches:
+    only:
+    - x64
+  platform:
+  - x64
+  - Win32
+  environment:
+    matrix:
+    - Architecture: none
+    - Architecture: avx
+    - Architecture: avx2
+    - Architecture: sse2
+  matrix:
+    exclude:
+      - image: Visual Studio 2013
+        platform: x64
+      - image: Visual Studio 2013
+        Architecture: avx
+      - image: Visual Studio 2013
+        Architecture: avx2
+      - image: Visual Studio 2013
+        Architecture: sse2
+      - image: Visual Studio 2017
+        Architecture: avx2
+        platform: Win32
+      - platform: x64
+        Architecture: sse2
+-
+  branches:
+    only:
+    - post-vs2013
+  platform:
+  - Win32
+
+
