@@ -2,7 +2,9 @@
 
 @if exist "%VS150COMNTOOLS%VsDevCmd.bat" goto skipwhere
 
-@set VSWHERE="%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe"
+@if defined VSWHERE if not exist %VSWHERE% set "VSWHERE="
+
+@if not defined VSWHWERE set VSWHERE="%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe"
 
 @if not exist %VSWHERE% set VSWHERE="%ProgramFiles%\Microsoft Visual Studio\Installer\vswhere.exe"
 
@@ -18,7 +20,6 @@
 @if not exist "%VS150COMNTOOLS%VsDevCmd.bat" goto weberrorexit
 
 :skipwhere
-
 md "%~dp0build\"
 
 @setlocal
@@ -61,6 +62,7 @@ call :run_msbuild "Release" %1 %2
 @echo +++++++++++++++++++++++++ %~1^|%~2
 msbuild /m "/p:Configuration=%~1;Platform=%~2" /t:Clean /verbosity:minimal /fileLogger "/fileLoggerParameters:Append;Verbosity=normal;LogFile=%~dp0build\audacity_%~1_%~2.log" top.proj
 @if %errorlevel% neq 0 goto errorexit
+del "%~dp0build\audacity_%~1_%~2.log"
 @echo ------------------------- %~1^|%~2
 @title Command Prompt
 
