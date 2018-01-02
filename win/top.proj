@@ -16,6 +16,7 @@
     <ProjectPropertiesWx>wxCompilerPrefix=$(AudacityBuild);$(BaseProperties)</ProjectPropertiesWx>
     <ProjectPropertiesWx Condition="'$(Configuration)' == 'Release'">WholeProgramOptimization=true;$(ProjectPropertiesWx)</ProjectPropertiesWx>
     <ProjectPropertiesWx Condition="'$(StaticRuntime)' == 'true'">ForceStaticRuntime=true;$(ProjectPropertiesWx)</ProjectPropertiesWx>
+    <ProjectPropertiesWx Condition="'$(DllExport)' == 'false'">ForceDllExport=false;$(ProjectPropertiesWx)</ProjectPropertiesWx>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReferencesWx Include="$(MSBuildThisFileDirectory)../wxWidgets/build/msw/wx_vc12.sln">
@@ -27,6 +28,7 @@
     <wxTargets Include="html" />
     <wxTargets Include="net" />
     <wxTargets Include="qa" />
+    <wxTargets Include="xml" />
     <wxTargets Include="wxexpat" />
     <wxTargets Include="wxjpeg" />
     <wxTargets Include="wxpng" />
@@ -35,7 +37,8 @@
   </ItemGroup>
   <PropertyGroup>
     <ProjectProperties>AudacityWxCompilerPrefix=$(AudacityBuild);$(BaseProperties)</ProjectProperties>
-    <ProjectProperties Condition=" '$(StaticRuntime)'=='true' ">$(ProjectProperties);StaticRuntime=true</ProjectProperties>
+    <ProjectProperties Condition=" '$(StaticRuntime)' == 'true' ">$(ProjectProperties);StaticRuntime=true</ProjectProperties>
+    <ProjectProperties Condition=" '$(DllExport)' == 'false' ">$(ProjectProperties);DllExport=false</ProjectProperties>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReferences Include="$(MSBuildThisFileDirectory)audacity.sln">
