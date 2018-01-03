@@ -150,7 +150,7 @@
       <CompileAs>Default</CompileAs>
       <DisableSpecificWarnings>4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <AdditionalOptions>/Zm150 %(AdditionalOptions)</AdditionalOptions>
-      <TreatSpecificWarningsAsErrors>4477;4701;4703;4716</TreatSpecificWarningsAsErrors>
+      <TreatSpecificWarningsAsErrors>4477;4701;4703;4716;%(TreatSpecificWarningsAsErrors)</TreatSpecificWarningsAsErrors>
       <WarningLevel>Level4</WarningLevel>
     </ClCompile>
     <ResourceCompile>
@@ -178,7 +178,7 @@
       <CompileAs>Default</CompileAs>
       <DisableSpecificWarnings>4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <AdditionalOptions>/Zm150 %(AdditionalOptions)</AdditionalOptions>
-      <TreatSpecificWarningsAsErrors>4477;4701;4703;4716</TreatSpecificWarningsAsErrors>
+      <TreatSpecificWarningsAsErrors>4477;4701;4703;4716;%(TreatSpecificWarningsAsErrors)</TreatSpecificWarningsAsErrors>
       <WarningLevel>Level4</WarningLevel>
     </ClCompile>
     <ResourceCompile>
@@ -208,7 +208,7 @@
       <ForcedIncludeFiles>AudacityHeaders.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <AdditionalOptions>/Zm150 %(AdditionalOptions)</AdditionalOptions>
-      <TreatSpecificWarningsAsErrors>4477;4701;4703;4716</TreatSpecificWarningsAsErrors>
+      <TreatSpecificWarningsAsErrors>4477;4701;4703;4716;%(TreatSpecificWarningsAsErrors)</TreatSpecificWarningsAsErrors>
       <WarningLevel>Level4</WarningLevel>
     </ClCompile>
     <ResourceCompile>
@@ -239,7 +239,7 @@
       <ForcedIncludeFiles>AudacityHeaders.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <AdditionalOptions>/Zm150 %(AdditionalOptions)</AdditionalOptions>
-      <TreatSpecificWarningsAsErrors>4477;4701;4703;4716</TreatSpecificWarningsAsErrors>
+      <TreatSpecificWarningsAsErrors>4477;4701;4703;4716;%(TreatSpecificWarningsAsErrors)</TreatSpecificWarningsAsErrors>
       <WarningLevel>Level4</WarningLevel>
     </ClCompile>
     <ResourceCompile>
