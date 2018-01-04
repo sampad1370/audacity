@@ -11,9 +11,7 @@
 #include "Internat.h"
 #include "Prefs.h"
 
-FileException::~FileException()
-{
-}
+FileException::~FileException() = default;
 
 wxString FileException::ErrorMessage() const
 {
