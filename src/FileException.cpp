@@ -28,7 +28,7 @@ wxString FileException::ErrorMessage() const
       case Cause::Write:
          format =
 _("Audacity failed to write to a file.\n"
-  "Perhaps %s is not writable or the disk is full.");
+  wxT("Perhaps %s is not writable or the disk is full."));
          break;
       case Cause::Rename:
          format =

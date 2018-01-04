@@ -252,7 +252,7 @@ static wxString AskCopyOrEdit()
 
       wxString clause1 = _(
 "When importing uncompressed audio files you can either copy them into the project,"
-" or read them directly from their current location (without copying).\n\n"
+wxT(" or read them directly from their current location (without copying).\n\n")
       );
 
       wxString clause2 = oldCopyPref == wxT("copy")
@@ -262,11 +262,11 @@ static wxString AskCopyOrEdit()
 
       wxString clause3 = _(
 "Reading the files directly allows you to play or edit them almost immediately.  "
-"This is less safe than copying in, because you must retain the files with their "
-"original names in their original locations.\n"
-"Help > Diagnostics > Check Dependencies will show the original names and locations of any files "
-"that you are reading directly.\n\n"
-"How do you want to import the current file(s)?"
+wxT("This is less safe than copying in, because you must retain the files with their ")
+wxT("original names in their original locations.\n")
+wxT("Help > Diagnostics > Check Dependencies will show the original names and locations of any files ")
+wxT("that you are reading directly.\n\n")
+wxT("How do you want to import the current file(s)?")
       );
 
       wxStaticText *message =
