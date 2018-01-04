@@ -77,7 +77,7 @@ public:
       mExtensions = sf_get_all_extensions();
    }
 
-   ~PCMImportPlugin() { }
+   ~PCMImportPlugin() = default;
 
    wxString GetPluginStringID() { return wxT("libsndfile"); }
    wxString GetPluginFormatDescription();

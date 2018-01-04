@@ -10,9 +10,7 @@
 #include "FileException.h"
 #include "Prefs.h"
 
-FileException::~FileException()
-{
-}
+FileException::~FileException() = default;
 
 std::unique_ptr< AudacityException > FileException::Move()
 {
