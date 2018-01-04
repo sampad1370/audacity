@@ -286,8 +286,8 @@ bool EffectPaulstretch::ProcessOne(WaveTrack *track,double t0,double t1,int coun
          /* i18n-hint: 'Time Resolution' is the name of a control in the Paulstretch effect.*/
          if ((minDuration / mProjectRate) < defaultPreviewLen) {
             ::Effect::MessageBox (wxString::Format(_("Audio selection too short to preview.\n\n"
-                                               "Try increasing the audio selection to at least %.1f seconds,\n"
-                                               "or reducing the 'Time Resolution' to less than %.1f seconds."),
+                                               wxT("Try increasing the audio selection to at least %.1f seconds,\n")
+                                               wxT("or reducing the 'Time Resolution' to less than %.1f seconds.")),
                                              (minDuration / track->GetRate()) + 0.05, // round up to 1/10 s.
                                              floor(maxTimeRes * 10.0) / 10.0),
                             wxOK | wxICON_EXCLAMATION);
@@ -295,8 +295,8 @@ bool EffectPaulstretch::ProcessOne(WaveTrack *track,double t0,double t1,int coun
          else {
             /* i18n-hint: 'Time Resolution' is the name of a control in the Paulstretch effect.*/
             ::Effect::MessageBox (wxString::Format(_("Unable to Preview.\n\n"
-                                               "For the current audio selection, the maximum\n"
-                                               "'Time Resolution' is %.1f seconds."),
+                                               wxT("For the current audio selection, the maximum\n")
+                                               wxT("'Time Resolution' is %.1f seconds.")),
                                              floor(maxTimeRes * 10.0) / 10.0),
                             wxOK | wxICON_EXCLAMATION);
          }
@@ -304,8 +304,8 @@ bool EffectPaulstretch::ProcessOne(WaveTrack *track,double t0,double t1,int coun
       else {
          /* i18n-hint: 'Time Resolution' is the name of a control in the Paulstretch effect.*/
          ::Effect::MessageBox (wxString::Format(_("The 'Time Resolution' is too long for the selection.\n\n"
-                                            "Try increasing the audio selection to at least %.1f seconds,\n"
-                                            "or reducing the 'Time Resolution' to less than %.1f seconds."),
+                                            wxT("Try increasing the audio selection to at least %.1f seconds,\n")
+                                            wxT("or reducing the 'Time Resolution' to less than %.1f seconds.")),
                                           (minDuration / track->GetRate()) + 0.05, // round up to 1/10 s.
                                           floor(maxTimeRes * 10.0) / 10.0),
                          wxOK | wxICON_EXCLAMATION);

@@ -783,7 +783,7 @@ void WaveTrackMenuTable::OnSpectrogramSettings(wxCommandEvent &)
 
    if (gAudioIO->IsBusy()){
       AudacityMessageBox(_("To change Spectrogram Settings, stop any\n"
-                     "playing or recording first."),
+                     wxT("playing or recording first.")),
                    _("Stop the Audio First"), wxOK | wxICON_EXCLAMATION | wxCENTRE);
       return;
    }
