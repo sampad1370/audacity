@@ -61,6 +61,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Globals", "Globals", "{7324
 		wx.props = wx.props
 	EndProjectSection
 EndProject
+Project("{C7167F0D-BC9F-4E6E-AFE1-012C56B48DB5}") = "Audacity Microsoft Store App", "Projects\Audacity Microsoft Store App\Audacity Microsoft Store App.wapproj", "{988968CA-4229-475A-8518-665DB33604B2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -266,6 +268,18 @@ Global
 		{A939AAF8-44F1-4CE7-9DD0-7A6E99814856}.Release|Win32.Deploy.0 = Release|Win32
 		{A939AAF8-44F1-4CE7-9DD0-7A6E99814856}.Release|x64.ActiveCfg = Release|x64
 		{A939AAF8-44F1-4CE7-9DD0-7A6E99814856}.Release|x64.Build.0 = Release|x64
+		{988968CA-4229-475A-8518-665DB33604B2}.Debug|Win32.ActiveCfg = Debug|x86
+		{988968CA-4229-475A-8518-665DB33604B2}.Debug|Win32.Build.0 = Debug|x86
+		{988968CA-4229-475A-8518-665DB33604B2}.Debug|Win32.Deploy.0 = Debug|x86
+		{988968CA-4229-475A-8518-665DB33604B2}.Debug|x64.ActiveCfg = Debug|x64
+		{988968CA-4229-475A-8518-665DB33604B2}.Debug|x64.Build.0 = Debug|x64
+		{988968CA-4229-475A-8518-665DB33604B2}.Debug|x64.Deploy.0 = Debug|x64
+		{988968CA-4229-475A-8518-665DB33604B2}.Release|Win32.ActiveCfg = Release|x86
+		{988968CA-4229-475A-8518-665DB33604B2}.Release|Win32.Build.0 = Release|x86
+		{988968CA-4229-475A-8518-665DB33604B2}.Release|Win32.Deploy.0 = Release|x86
+		{988968CA-4229-475A-8518-665DB33604B2}.Release|x64.ActiveCfg = Release|x64
+		{988968CA-4229-475A-8518-665DB33604B2}.Release|x64.Build.0 = Release|x64
+		{988968CA-4229-475A-8518-665DB33604B2}.Release|x64.Deploy.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
