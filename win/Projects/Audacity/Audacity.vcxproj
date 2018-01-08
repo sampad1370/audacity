@@ -72,47 +72,7 @@
     <Import Project="..\..\release.props" />
   </ImportGroup>
   <Import Condition=" '$(GSTREAMER_SDK)'!='' " Project="GStreamer.props" />
-  <ItemGroup Label="AudacityHeaders">
-    <AudacityHeader Include="..\..\..\lib-src\expat\lib" />
-    <AudacityHeader Include="..\..\..\lib-src\FileDialog" />
-    <AudacityHeader Include="..\..\..\lib-src\FileDialog\win" />
-    <AudacityHeader Include="..\..\..\lib-src\ffmpeg\win32" />
-    <AudacityHeader Include="..\..\..\lib-src\ffmpeg" />
-    <AudacityHeader Include="..\..\..\lib-src\lib-widget-extra" />
-    <AudacityHeader Include="..\..\..\lib-src\libflac\include" />
-    <AudacityHeader Include="..\..\..\lib-src\libid3tag" />
-    <AudacityHeader Include="..\..\..\lib-src\libmad\msvc++" />
-    <AudacityHeader Include="..\..\..\lib-src\libmad" />
-    <AudacityHeader Include="..\..\..\lib-src\libnyquist" />
-    <AudacityHeader Include="..\..\..\lib-src\libogg\include" />
-    <AudacityHeader Include="..\..\..\lib-src\libscorealign" />
-    <AudacityHeader Include="..\libsndfile" />
-    <AudacityHeader Include="..\..\..\lib-src\libsoxr\src" />
-    <AudacityHeader Include="..\..\..\lib-src\libvamp" />
-    <AudacityHeader Include="..\..\..\lib-src\libvorbis\include" />
-    <AudacityHeader Include="..\..\..\lib-src\portaudio-v19\include" />
-    <AudacityHeader Include="..\..\..\lib-src\portmixer\include" />
-    <AudacityHeader Include="..\..\..\lib-src\portsmf" />
-    <AudacityHeader Include="..\..\..\lib-src\sbsms\include" />
-    <AudacityHeader Include="..\..\..\lib-src\soundtouch\include" />
-    <AudacityHeader Include="..\..\..\lib-src\twolame\libtwolame" />
-    <AudacityHeader Include="..\..\..\lib-src\portmidi\pm_common" />
-    <AudacityHeader Include="..\..\..\lib-src\portmidi\pm_win" />
-    <AudacityHeader Include="..\..\..\lib-src\portmidi\porttime" />
-    <AudacityHeader Include="..\..\..\lib-src\lv2\lilv" />
-    <AudacityHeader Include="..\..\..\lib-src\lv2\lv2" />
-    <AudacityHeader Include="..\..\..\lib-src\lv2\suil" />
-    <AudacityHeader Include="..\..\..\lib-src\lame" />
-    <AudacityHeader Include="..\..\..\src" />
-  </ItemGroup>
-  <PropertyGroup>
-    <AudacityHeaderDirs>@(AudacityHeader->'%(FullPath)')</AudacityHeaderDirs>
-  </PropertyGroup>
-  <ItemDefinitionGroup>
-    <ClCompile>
-      <AdditionalIncludeDirectories>$(AudacityHeaderDirs);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ClCompile>
-  </ItemDefinitionGroup>
+  <Import Project="libraries.props" />
   <PropertyGroup Label="UserMacros">
   </PropertyGroup>
   <PropertyGroup>
@@ -143,7 +103,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <AdditionalIncludeDirectories>$(AudacityWxToolkitIncludeDir);$(AudacityWxIncludeDir);..\..;..\..\..\include;$(AudacityProjectHeaders);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>AUDACITY_DLL_API=;BUILDING_AUDACITY;FLAC__NO_DLL;XML_STATIC;__STDC_CONSTANT_MACROS;WXINTL_NO_GETTEXT_MACRO;WXUSINGDLL;__WXMSW__;wxDEBUG_LEVEL=0;NDEBUG;WIN32;STRICT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAs>Default</CompileAs>
       <DisableSpecificWarnings>4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <ForcedIncludeFiles>AudacityHeaders.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
@@ -161,8 +121,6 @@
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
     <Link>
-      <AdditionalDependencies>expat.lib;filedialog.lib;libsndfile.lib;libsoxr.lib;portaudio-v19.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;comctl32.lib;rpcrt4.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(AudacityLibOutDir);$(AudacityWxLibDir);$(GSTREAMER_SDK)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <SubSystem>Windows</SubSystem>
       <StackReserveSize>8388608</StackReserveSize>
       <TargetMachine>MachineX86</TargetMachine>
@@ -171,7 +129,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>..\..;..\..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>TARGET_PLATFORM_DISPLAY_NAME="$(TargetPlatformDisplayName)";RUNTIME_LIBRARY_VERSION_NAME="%(RuntimeLibrary)";$(AudacityDllApi);BUILDING_AUDACITY;FLAC__NO_DLL;XML_STATIC;__STDC_CONSTANT_MACROS;WXINTL_NO_GETTEXT_MACRO;NDEBUG;WIN32;STRICT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>AudacityHeaders.h</PrecompiledHeaderFile>
       <ForcedIncludeFiles>AudacityHeaders.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -190,17 +148,14 @@
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
     <Link>
-      <AdditionalDependencies>expat.lib;filedialog.lib;libsndfile.lib;libsoxr.lib;portaudio-v19.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;comctl32.lib;rpcrt4.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(AudacityLibOutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <SubSystem>Windows</SubSystem>
       <StackReserveSize>8388608</StackReserveSize>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-    <ClCompile>
       <AdditionalIncludeDirectories>..\..;..\..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>TARGET_PLATFORM_DISPLAY_NAME="$(TargetPlatformDisplayName)";RUNTIME_LIBRARY_VERSION_NAME="%(RuntimeLibrary)";$(AudacityDllApi);BUILDING_AUDACITY;FLAC__NO_DLL;XML_STATIC;__STDC_CONSTANT_MACROS;WXINTL_NO_GETTEXT_MACRO;NDEBUG;WIN32;STRICT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>AudacityHeaders.h</PrecompiledHeaderFile>
       <ForcedIncludeFiles>AudacityHeaders.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -219,8 +174,6 @@
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
     <Link>
-      <AdditionalDependencies>expat.lib;filedialog.lib;libsndfile.lib;libsoxr.lib;portaudio-v19.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;comctl32.lib;rpcrt4.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(AudacityLibOutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <SubSystem>Windows</SubSystem>
       <StackReserveSize>8388608</StackReserveSize>
     </Link>
@@ -228,7 +181,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <AdditionalIncludeDirectories>..\..;..\..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>BUILDING_AUDACITY;FLAC__NO_DLL;XML_STATIC;__STDC_CONSTANT_MACROS;WXINTL_NO_GETTEXT_MACRO;WXUSINGDLL;__WXMSW__;__WXDEBUG__;_DEBUG;WIN32;STRICT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>AudacityHeaders.h</PrecompiledHeaderFile>
       <CompileAs>Default</CompileAs>
@@ -247,8 +200,6 @@
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
     <Link>
-      <AdditionalDependencies>expat.lib;filedialog.lib;libsndfile.lib;libsoxr.lib;portaudio-v19.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;comctl32.lib;rpcrt4.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(AudacityLibOutDir);$(AudacityWxLibDir);$(GSTREAMER_SDK)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <StackReserveSize>8388608</StackReserveSize>
@@ -259,7 +210,7 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>..\..;..\..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>TARGET_PLATFORM_DISPLAY_NAME="$(TargetPlatformDisplayName)";RUNTIME_LIBRARY_VERSION_NAME="%(RuntimeLibrary)";$(AudacityDllApi);BUILDING_AUDACITY;FLAC__NO_DLL;XML_STATIC;__STDC_CONSTANT_MACROS;WXINTL_NO_GETTEXT_MACRO;_DEBUG;WIN32;STRICT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>AudacityHeaders.h</PrecompiledHeaderFile>
       <CompileAs>Default</CompileAs>
@@ -275,12 +226,8 @@
       <Culture>0x0809</Culture>
       <AdditionalIncludeDirectories>$(MSBuildProjectDirectory)\..\..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
-    <ProjectReference>
-      <LinkLibraryDependencies>false</LinkLibraryDependencies>
-    </ProjectReference>
+    <ProjectReference />
     <Link>
-      <AdditionalDependencies>expat.lib;filedialog.lib;libsndfile.lib;libsoxr.lib;portaudio-v19.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;comctl32.lib;rpcrt4.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(AudacityLibOutDir);$(AudacityLibDebugOutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <StackReserveSize>8388608</StackReserveSize>
@@ -289,7 +236,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>..\..;..\..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>BUILDING_AUDACITY;FLAC__NO_DLL;XML_STATIC;__STDC_CONSTANT_MACROS;WXINTL_NO_GETTEXT_MACRO;WXUSINGDLL;__WXMSW__;__WXDEBUG__;_DEBUG;WIN32;STRICT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>AudacityHeaders.h</PrecompiledHeaderFile>
       <CompileAs>Default</CompileAs>
@@ -298,28 +245,28 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <AdditionalOptions>/Zm150 %(AdditionalOptions)</AdditionalOptions>
       <TreatSpecificWarningsAsErrors>4477;4701;4703;4716</TreatSpecificWarningsAsErrors>
+      <DiagnosticsFormat>Caret</DiagnosticsFormat>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Culture>0x0809</Culture>
       <AdditionalIncludeDirectories>$(AudacityWxIncludeDir);..\..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
-    <ProjectReference>
-      <LinkLibraryDependencies>false</LinkLibraryDependencies>
-    </ProjectReference>
+    <ProjectReference />
     <Link>
-      <AdditionalDependencies>expat.lib;filedialog.lib;libsndfile.lib;libsoxr.lib;portaudio-v19.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;comctl32.lib;rpcrt4.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(AudacityLibOutDir);$(AudacityWxLibDir);$(GSTREAMER_SDK)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <StackReserveSize>8388608</StackReserveSize>
     </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>..\..;..\..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>TARGET_PLATFORM_DISPLAY_NAME="$(TargetPlatformDisplayName)";RUNTIME_LIBRARY_VERSION_NAME="%(RuntimeLibrary)";$(AudacityDllApi);BUILDING_AUDACITY;FLAC__NO_DLL;XML_STATIC;__STDC_CONSTANT_MACROS;WXINTL_NO_GETTEXT_MACRO;_DEBUG;WIN32;STRICT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>AudacityHeaders.h</PrecompiledHeaderFile>
       <CompileAs>Default</CompileAs>
@@ -329,6 +276,7 @@
       <AdditionalOptions>/Zm150 %(AdditionalOptions)</AdditionalOptions>
       <TreatSpecificWarningsAsErrors>4477;4701;4703;4716;%(TreatSpecificWarningsAsErrors)</TreatSpecificWarningsAsErrors>
       <WarningLevel>Level4</WarningLevel>
+      <DiagnosticsFormat>Caret</DiagnosticsFormat>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -339,8 +287,6 @@
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
     <Link>
-      <AdditionalDependencies>expat.lib;filedialog.lib;libsndfile.lib;libsoxr.lib;portaudio-v19.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;comctl32.lib;rpcrt4.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(AudacityLibOutDir);$(AudacityLibDebugOutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <StackReserveSize>8388608</StackReserveSize>
@@ -1150,7 +1096,7 @@
   <ItemGroup>
     <ProjectReference Include="..\filedialog\filedialog.vcxproj">
       <Project>{5284d863-3813-479f-bbf0-ac234e216bc6}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\libflac++\libflac++.vcxproj">
       <Project>{b28c9f3f-ff0e-4fec-844c-685390b8ac06}</Project>
