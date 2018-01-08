@@ -60,13 +60,13 @@ typedef enum
 
 extern void PipeServer();
 typedef SCRIPT_PIPE_DLL_IMPORT int (*tpExecScriptServerFunc)( wxString * pIn, wxString * pOut);
-static tpExecScriptServerFunc pScriptServerFn=NULL;
+static tpExecScriptServerFunc pScriptServerFn= nullptr;
 
 
 extern "C" {
 
 
-SCRIPT_PIPE_DLL_API wxChar * GetVersionString()
+SCRIPT_PIPE_DLL_API const wxChar * GetVersionString()
 {
    // Make sure that this version of the module requires the version 
    // of Audacity it is built with. 
