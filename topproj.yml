@@ -2,7 +2,6 @@ version: 1.0.{build}
 branches:
   only:
   - x64
-  - post-vs2013
 image:
 - Visual Studio 2013
 #- Visual Studio 2015
@@ -59,16 +58,3 @@ for:
         platform: Win32
       - platform: x64
         Architecture: sse2
--
-  branches:
-    only:
-    - post-vs2013
-  platform:
-  - Win32
-  environment:
-    WXWIN: '%APPVEYOR_BUILD_FOLDER%\wxWidgets'
-  matrix:
-    fast_finish: false
-  before_build:
-    - 'echo WXWIN=%WXWIN%'
-
