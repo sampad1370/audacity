@@ -45,6 +45,7 @@
 
     <AudacityBuildDir>$(MSBuildThisFileDirectory)build\</AudacityBuildDir>
     <AudacityOutDir>$(AudacityBuildDir)bin\$(AudacityBuild)\$(Platform)\$(Configuration)\</AudacityOutDir>
+    <AudacityModuleOutDir>$(AudacityOutDir)modules\</AudacityModuleOutDir>
     <AudacityLibOutDir>$(AudacityBuildDir)lib\$(AudacityBuild)\$(Platform)\$(Configuration)\</AudacityLibOutDir>
     <AudacityLibReleaseOutDir>$(AudacityBuildDir)lib\$(AudacityBuild)\$(Platform)\Release\</AudacityLibReleaseOutDir>
     <AudacityLibDebugOutDir>$(AudacityBuildDir)lib\$(AudacityBuild)\$(Platform)\Debug\</AudacityLibDebugOutDir>
