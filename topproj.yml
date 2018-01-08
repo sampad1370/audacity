@@ -3,7 +3,7 @@ branches:
   only:
   - x64
 image:
-- Visual Studio 2013
+#- Visual Studio 2013
 #- Visual Studio 2015
 - Visual Studio 2017
 configuration: Release
@@ -20,6 +20,7 @@ build:
   verbosity: minimal
 before_package:
 - cmd: >-
+    del /S win\build\*.lib &
     del /S win\build\*.ipdb &
     del /S win\build\*.iobj &
     del /S win\build\*.pdb &
