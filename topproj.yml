@@ -9,7 +9,7 @@ image:
 configuration: Release
 platform:
 install:
-- git submodule update --init wxWidgets
+- git submodule update --init --recursive --jobs 4
 before_build:
 - cmd: nuget restore win\audacity.sln
 - 'echo #define REV_LONG "%APPVEYOR_REPO_COMMIT%" > src\RevisionIdent.h'
