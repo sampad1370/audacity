@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
-    DefaultTargets="Build">
+    DefaultTargets="Build" ToolsVersion="15.0">
   <PropertyGroup>
     <!-- Temporary AppVeyor duct tape -->
     <StaticRuntime Condition=" '$(APPVEYOR)'=='true' ">true</StaticRuntime>
@@ -46,14 +46,26 @@
       <Properties>$(ProjectProperties)</Properties>
     </ProjectReferences>
   </ItemGroup>
+  <PropertyGroup>
+    <ProjectPropertiesLame>$(BaseProperties);LameBuildDir=$(AudacityBuildDir);LameBuild=$(AudacityBuild);LameBaseIntDir=$(AudacityBaseIntDir);LameLibOutDir=$(AudacityLibOutDir);LameOutDir=$(AudacityOutDir);LamePlatformToolset=$(AudacityPlatformToolset)</ProjectPropertiesLame>
+    <ProjectPropertiesLame Condition="'$(StaticRuntime)'=='true'">StaticRuntime=true;$(ProjectPropertiesLame)</ProjectPropertiesLame>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReferencesLame Include="$(MSBuildThisFileDirectory)lame.proj">
+      <Properties>$(ProjectPropertiesLame)</Properties>
+    </ProjectReferencesLame>
+  </ItemGroup>
   <Target Name="BuildWx">
     <Copy Condition="!Exists('$(WXWIN)\include\wx\msw\setup.h')"
       SourceFiles="$(WXWIN)\include\wx\msw\setup0.h"
       DestinationFiles="$(WXWIN)\include\wx\msw\setup.h" />
     <MSBuild Projects="@(ProjectReferencesWx)" Targets="@(wxTargets)" BuildInParallel="true" />
   </Target>
-  <Target Name="BuildAudacity">
+  <Target Name="BuildAudacity" DependsOnTargets="BuildWx">
     <MSBuild Projects="@(ProjectReferences)" Targets="Build" BuildInParallel="true" />
+  </Target>
+  <Target Name="BuildLame">
+    <MSBuild Projects="@(ProjectReferencesLame)" Targets="Build" BuildInParallel="true" />
   </Target>
   <Target Name="CleanWx">
     <MSBuild Projects="@(ProjectReferencesWx)" Targets="Clean" BuildInParallel="true" />
@@ -61,9 +73,12 @@
   <Target Name="CleanAudacity">
     <MSBuild Projects="@(ProjectReferences)" Targets="Clean" BuildInParallel="true" />
   </Target>
+  <Target Name="CleanLame">
+    <MSBuild Projects="@(ProjectReferencesLame)" Targets="Clean" BuildInParallel="true" />
+  </Target>
   <Target Name="Clean">
-    <MSBuild Projects="@(ProjectReferencesWx);@(ProjectReferences)" Targets="Clean" BuildInParallel="true" />
+    <MSBuild Projects="@(ProjectReferencesWx);@(ProjectReferences);@(ProjectReferencesLame)" Targets="Clean" BuildInParallel="true" />
   </Target>
   <Target Name="Rebuild" DependsOnTargets="Clean;Build" />
-  <Target Name="Build" DependsOnTargets="BuildWx;BuildAudacity" />
+  <Target Name="Build" DependsOnTargets="BuildWx;BuildAudacity;BuildLame" />
 </Project>

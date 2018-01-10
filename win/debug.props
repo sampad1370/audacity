@@ -11,7 +11,6 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PreprocessorDefinitions>_ALLOW_RTCc_IN_STL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <EnableEnhancedInstructionSet Condition="'$(AudacityEnhancedInstructionSet)'!=''">$(AudacityEnhancedInstructionSet)</EnableEnhancedInstructionSet>
     </ClCompile>
     <Link>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>

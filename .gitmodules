@@ -2,3 +2,6 @@
 	path = external/wxWidgets
 	url = https://github.com/henricj/wxWidgets.git
 	branch = audacity30
+[submodule "external/lame"]
+	path = external/lame
+	url = https://github.com/henricj/lame.git

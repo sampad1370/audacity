@@ -18,6 +18,7 @@
 	   <TreatSpecificWarningsAsErrors>4172;%(TreatSpecificWarningsAsErrors)</TreatSpecificWarningsAsErrors>
       -->
       <PreprocessorDefinitions>_CRT_NONSTDC_NO_DEPRECATE;NTDDI_VERSION=$(AudacityNtddiVersion);_WIN32_WINNT=$(AudacityWin32Winnt);%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <EnableEnhancedInstructionSet Condition="'$(AudacityEnhancedInstructionSet)'!=''">$(AudacityEnhancedInstructionSet)</EnableEnhancedInstructionSet>
       <ConformanceMode>$(AudacityConformanceMode)</ConformanceMode>
       <LanguageStandard>$(AudacityLanguageStandard)</LanguageStandard>
     </ClCompile>
