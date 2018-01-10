@@ -39,7 +39,8 @@ for:
   - Win32
   environment:
     matrix:
-    - Architecture: none
+    - Architecture: default
+    - Architecture: fpu
     - Architecture: avx
     - Architecture: avx2
     - Architecture: sse2
@@ -59,3 +60,7 @@ for:
         platform: Win32
       - platform: x64
         Architecture: sse2
+      - platform: x64
+        Architecture: fpu
+      - platform: Win32
+        Architecture: default
