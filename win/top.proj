@@ -6,6 +6,7 @@
     <StaticRuntime Condition=" '$(APPVEYOR)'=='true' ">true</StaticRuntime>
   </PropertyGroup>
   <Import Project="audacity.props" />
+  <Import Project="wx-defs.props" />
   <PropertyGroup>
     <PlatformToolset>$(AudacityPlatformToolset)</PlatformToolset>
     <BaseProperties>Configuration=$(Configuration);Platform=$(Platform);PlatformToolset=$(PlatformToolset);PreferredToolArchitecture=x64</BaseProperties>
@@ -19,7 +20,7 @@
     <ProjectPropertiesWx Condition="'$(DllExport)' == 'false'">ForceDllExport=false;$(ProjectPropertiesWx)</ProjectPropertiesWx>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReferencesWx Include="$(MSBuildThisFileDirectory)../wxWidgets/build/msw/wx_vc12.sln">
+    <ProjectReferencesWx Include="$(WXWIN)\build/msw/wx_vc12.sln">
       <Properties>$(ProjectPropertiesWx)</Properties>
     </ProjectReferencesWx>
     <wxTargets Include="adv" />
@@ -46,9 +47,9 @@
     </ProjectReferences>
   </ItemGroup>
   <Target Name="BuildWx">
-    <Copy Condition="!Exists('$(MSBuildThisFileDirectory)..\wxWidgets\include\wx\msw\setup.h')"
-      SourceFiles="$(MSBuildThisFileDirectory)..\wxWidgets\include\wx\msw\setup0.h"
-      DestinationFiles="$(MSBuildThisFileDirectory)..\wxWidgets\include\wx\msw\setup.h" />
+    <Copy Condition="!Exists('$(WXWIN)\include\wx\msw\setup.h')"
+      SourceFiles="$(WXWIN)\include\wx\msw\setup0.h"
+      DestinationFiles="$(WXWIN)\include\wx\msw\setup.h" />
     <MSBuild Projects="@(ProjectReferencesWx)" Targets="@(wxTargets)" BuildInParallel="true" />
   </Target>
   <Target Name="BuildAudacity">
