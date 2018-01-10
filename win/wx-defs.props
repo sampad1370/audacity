@@ -4,7 +4,7 @@
     <AudacityWxDir Condition=" '$(WXWIN_VS2013)' != '' And Exists('$(WXWIN_VS2013)\build\msw') And '$(VisualStudioVersion)' == '12.0' ">$(WXWIN_VS2013)</AudacityWxDir>
     <AudacityWxDir Condition=" '$(WXWIN_VS2015)' != '' And Exists('$(WXWIN_VS2015)\build\msw') And '$(VisualStudioVersion)' == '14.0' ">$(WXWIN_VS2015)</AudacityWxDir>
     <AudacityWxDir Condition=" '$(WXWIN_VS2017)' != '' And Exists('$(WXWIN_VS2017)\build\msw') And '$(VisualStudioVersion)' == '15.0' ">$(WXWIN_VS2017)</AudacityWxDir>
-    <AudacityWxDir Condition=" '$(WXWIN)' == '' ">$(MSBuildThisFileDirectory)..\wxWidgets</AudacityWxDir>
+    <AudacityWxDir Condition=" '$(WXWIN)' == '' ">$(MSBuildThisFileDirectory)..\external\wxWidgets</AudacityWxDir>
     <WXWIN>$(AudacityWxDir)</WXWIN>
 
     <AudacityWxArchSuffix />
