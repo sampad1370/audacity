@@ -33,7 +33,7 @@ static RNG CreateGenerator(int size = 32)
 {
     auto seed_data = RngSupport::CreateSeedVector(size);
 
-    nyq_seed_seq seq( seed_data.begin(), seed_data.end() );
+    nyq_seed_seq seq(seed_data.begin(), seed_data.end());
 
     return RNG{seq};
 }
