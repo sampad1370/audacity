@@ -40,10 +40,10 @@ for:
   environment:
     matrix:
     - Architecture: default
-    - Architecture: fpu
     - Architecture: avx
     - Architecture: avx2
     - Architecture: sse2
+    - Architecture: fpu
   matrix:
     fast_finish: true
     exclude:
