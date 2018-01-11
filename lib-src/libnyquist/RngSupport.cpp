@@ -1,6 +1,8 @@
-﻿#include "RngSupport.h"
+#include "RngSupport.h"
 
 #if defined NYQ_USE_RANDOM_HEADER
+
+#include <cassert>
 
 #include <algorithm>
 #include <atomic>
@@ -55,21 +57,27 @@ static vector<unsigned int> CreateRootSeedVector()
 {
     random_device rd;
 
-    std::vector<unsigned int> seed_data(nyq_generator_state_size);
+    std::vector<decltype(rd)::result_type> seed_data;
 
-    generate_n(&seed_data[0], seed_data.size(), ref(rd));
+    const int reserve_size = nyq_generator_state_size + 3;
+
+    seed_data.reserve(reserve_size);
+
+    generate_n(std::back_inserter(seed_data), nyq_generator_state_size, ref(rd));
 
     // Protect against a broken random_device
-    auto timestamp = std::chrono::high_resolution_clock::now().time_since_epoch().count();
+    const auto timestamp = std::chrono::high_resolution_clock::now().time_since_epoch().count();
 
     seed_data.push_back(static_cast<unsigned int>(timestamp) & 0xffffffff);
     seed_data.push_back(static_cast<unsigned int>(timestamp >> 32));
 
     static atomic<int> counter;
 
-    auto x = ++counter;
+    const auto x = ++counter;
 
     seed_data.push_back(x);
+
+    assert(seed_data.size() == reserve_size);
 
 #ifdef USE_RDRAND
     if (HasRdRand())
@@ -108,9 +116,7 @@ static RNG CreateRootGenerator()
 
     std::seed_seq seed(seed_data.begin(), seed_data.end());
 
-    RNG generator(seed);
-
-    return generator;
+    return RNG{seed};
 }
 
 #ifdef _MSC_VER
@@ -126,7 +132,7 @@ static RNG CreateRootGenerator()
 template <class RNG = nyq_generator>
 static RNG& GetRootGenerator()
 {
-    static THREAD_LOCAL auto generator = CreateRootGenerator<RNG>();
+    static THREAD_LOCAL RNG generator{ CreateRootGenerator<RNG>() };
 
     return generator;
 }
@@ -137,17 +143,18 @@ namespace RngSupport
 {
 std::vector<unsigned int> CreateSeedVector(std::vector<unsigned int>::size_type size)
 {
+    if (size < 1)
+       size = 1;
+
     vector<unsigned int> seed;
 
     seed.reserve(size);
 
-    auto rng = GetRootGenerator();
+    auto& rng = GetRootGenerator();
 
-    if (size < 1)
-       size = 1;
+    std::uniform_int_distribution<unsigned> uniform;
 
-    while (size--)
-        seed.push_back(rng());
+    std::generate_n(std::back_inserter(seed), size, [&] { return uniform(rng); });
 
     return seed;
 }
@@ -160,12 +167,11 @@ void RandomFillUniformFloat(float* p, int count, float low, float high)
     if (count < 1)
         return;
 
-    nyq_generator& generator = GetRootGenerator();
+    auto& generator = GetRootGenerator();
 
     nyq_uniform_float_distribution uniform{ low, high };
 
-    while (count--)
-        *p++ = uniform(generator);
+    std::generate_n(p, count, [&] { return uniform(generator); });
 }
 
 extern "C"
@@ -176,10 +182,9 @@ void RandomFillNormalFloat(float* p, int count, float mean, float sigma)
 
     nyq_generator& generator = GetRootGenerator();
 
-    nyq_normal_float_distribution uniform{ mean, sigma };
+    nyq_normal_float_distribution normal{ mean, sigma };
 
-    while (count--)
-        *p++ = uniform(generator);
+    std::generate_n(p, count, [&] { return normal(generator); });
 }
 
 extern "C"
@@ -190,15 +195,15 @@ int RandomFillClampedNormalFloat(float* p, int count, float mean, float sigma, f
 
     nyq_generator& generator = GetRootGenerator();
 
-    nyq_normal_float_distribution uniform{ mean, sigma };
+    nyq_normal_float_distribution normal{ mean, sigma };
 
     while (count--)
     {
-        int retry = 10;
+       auto retry = 10;
 
         for (;;)
         {
-            float x = uniform(generator);
+           const auto x = normal(generator);
 
             if (x <= high && x >= low)
             {
@@ -217,21 +222,33 @@ int RandomFillClampedNormalFloat(float* p, int count, float mean, float sigma, f
 extern "C"
 float RandomUniformFloat(float low, float high)
 {
-    auto& generator = GetRootGenerator();
+   nyq_uniform_float_distribution uniform{ low, high };
 
-    nyq_uniform_float_distribution uniform{ low, high };
-
-    return uniform(generator);
+   return uniform(GetRootGenerator());
 }
 
 extern "C"
-int RandomUniformInt(int lowInclusive, int highExclusive)
+double RandomUniformDouble(double low, double high)
 {
-    auto& generator = GetRootGenerator();
+   nyq_uniform_double_distribution uniform{ low, high };
 
-    nyq_uniform_int_distribution uniform{ lowInclusive, highExclusive };
+   return uniform(GetRootGenerator());
+}
 
-    return uniform(generator);
+extern "C"
+int RandomUniformInt(int lowInclusive, int highInclusive)
+{
+    nyq_uniform_int_distribution uniform{ lowInclusive, highInclusive };
+
+    return uniform(GetRootGenerator());
+}
+
+extern "C"
+long RandomUniformLong(long lowInclusive, long highInclusive)
+{
+   nyq_uniform_long_distribution uniform{ lowInclusive, highInclusive };
+
+   return uniform(GetRootGenerator());
 }
 
 #else // NYQ_USE_RANDOM_HEADER
