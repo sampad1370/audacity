@@ -11,7 +11,8 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <FloatingPointModel>Fast</FloatingPointModel>
       <WarningLevel>Level3</WarningLevel>
-      <DisableSpecificWarnings>4018;4244;4267;4275</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4018;4244;4267;4275;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4101;4389;4456;4457;4458;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <TreatSpecificWarningsAsErrors>4047;4311;4312;%(TreatSpecificWarningsAsErrors)</TreatSpecificWarningsAsErrors>
       <!-- This breaks the Audacity.vcxproj build with an error in type_traits on a nonsense line number.
             d:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.12.25827\include\type_traits(16707566): error C4172: returning address of local variable or temporary
