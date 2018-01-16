@@ -62,9 +62,7 @@ MixerToolBar::MixerToolBar()
    mOutputSliderVolume = 0.0;
 }
 
-MixerToolBar::~MixerToolBar()
-{
-}
+MixerToolBar::~MixerToolBar() = default;
 
 void MixerToolBar::Create(wxWindow *parent)
 {

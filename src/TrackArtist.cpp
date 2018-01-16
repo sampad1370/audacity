@@ -280,9 +280,7 @@ TrackArtist::TrackArtist()
    vruler = std::make_unique<Ruler>();
 }
 
-TrackArtist::~TrackArtist()
-{
-}
+TrackArtist::~TrackArtist() = default;
 
 void TrackArtist::SetColours( int iColorIndex)
 {
@@ -356,12 +354,12 @@ void TrackArtist::DrawTracks(TrackPanelDrawingContext &context,
    TrackListIterator iter(tracks);
    Track *t;
 
-   bool hasSolo = false;
+   auto hasSolo = false;
    for (t = iter.First(); t; t = iter.Next()) {
-      auto other = tracks->FindPendingChangedTrack(t->GetId());
+      const auto other = tracks->FindPendingChangedTrack(t->GetId());
       if (other)
          t = other.get();
-      auto pt = dynamic_cast<const PlayableTrack *>(t);
+      const auto pt = dynamic_cast<const PlayableTrack *>(t);
       if (pt && pt->GetSolo()) {
          hasSolo = true;
          break;

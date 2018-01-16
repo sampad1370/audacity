@@ -225,9 +225,7 @@ SliderDialog::SliderDialog(wxWindow * parent, wxWindowID id,
    mSlider->Set(value);
 }
 
-SliderDialog::~SliderDialog()
-{
-}
+SliderDialog::~SliderDialog() = default;
 
 bool SliderDialog::TransferDataToWindow()
 {
@@ -479,11 +477,9 @@ void LWSlider::Init(wxWindow * parent,
    Move(pos);
 }
 
-LWSlider::~LWSlider()
-{
-}
+LWSlider::~LWSlider() = default;
 
-wxWindowID LWSlider::GetId()
+wxWindowID LWSlider::GetId() const
 {
    return mID;
 }
@@ -504,7 +500,7 @@ void LWSlider::SetDefaultShortcut(bool value)
    mDefaultShortcut = value;
 }
 
-void LWSlider::GetScroll(float & line, float & page)
+void LWSlider::GetScroll(float & line, float & page) const
 {
    line = mScrollLine;
    page = mScrollPage;
@@ -974,7 +970,7 @@ bool LWSlider::DoShowDialog(wxPoint pos)
    float value = mCurrentValue;
    bool changed = false;
 
-   SliderDialog dlg( NULL,
+   SliderDialog dlg(nullptr,
                      wxID_ANY,
                      mName,
                      pos,
@@ -1304,7 +1300,7 @@ float LWSlider::ClickPositionToValue(int fromPos, bool shiftDown)
       // MM: If shift is not down, or we don't allow usage
       // of shift key at all, trim value to steps of
       // provided size.
-      val = (int)(val / mStepValue + 0.5 * (val>0?1.0f:-1.0f)) * mStepValue;
+      val = static_cast<int>(roundf(val / mStepValue)) * mStepValue;
    }
 
    return val;
@@ -1339,13 +1335,13 @@ float LWSlider::DragPositionToValue(int fromPos, bool shiftDown)
       // MM: If shift is not down, or we don't allow usage
       // of shift key at all, and the slider has not continuous values,
       // trim value to steps of provided size.
-      val = (int)(val / mStepValue + 0.5 * (val>0?1.0f:-1.0f)) * mStepValue;
+      val = static_cast<int>(roundf(val / mStepValue)) * mStepValue;
    }
 
    return val;
 }
 
-float LWSlider::Get( bool convert )
+float LWSlider::Get( bool convert ) const
 {
    if (mStyle == DB_SLIDER)
       return (convert ? DB_TO_LINEAR(mCurrentValue) : mCurrentValue);
@@ -1422,7 +1418,7 @@ void LWSlider::Refresh()
       mParent->Refresh(false);
 }
 
-bool LWSlider::GetEnabled()
+bool LWSlider::GetEnabled() const
 {
    return mEnabled;
 }
@@ -1584,7 +1580,7 @@ void ASlider::OnTimer(wxTimerEvent & WXUNUSED(event))
    mLWSlider->ShowTip(true);
 }
 
-void ASlider::GetScroll(float & line, float & page)
+void ASlider::GetScroll(float & line, float & page) const
 {
    mLWSlider->GetScroll(line, page);
 }
@@ -1599,7 +1595,7 @@ void ASlider::SetToolTipTemplate(const wxString & tip)
    mLWSlider->SetToolTipTemplate(tip);
 }
 
-float ASlider::Get( bool convert )
+float ASlider::Get( bool convert ) const
 {
    return mLWSlider->Get( convert );
 }
@@ -1669,9 +1665,7 @@ ASliderAx::ASliderAx( wxWindow * window ) :
 {
 }
 
-ASliderAx::~ASliderAx()
-{
-}
+ASliderAx::~ASliderAx() = default;
 
 // Retrieves the address of an IDispatch interface for the specified child.
 // All objects must support this property.
@@ -1683,7 +1677,7 @@ wxAccStatus ASliderAx::GetChild( int childId, wxAccessible** child )
    }
    else
    {
-      *child = NULL;
+      *child = nullptr;
    }
 
    return wxACC_OK;

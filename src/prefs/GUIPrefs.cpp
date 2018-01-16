@@ -43,9 +43,7 @@ GUIPrefs::GUIPrefs(wxWindow * parent, wxWindowID winid)
    Populate();
 }
 
-GUIPrefs::~GUIPrefs()
-{
-}
+GUIPrefs::~GUIPrefs() = default;
 
 void GUIPrefs::GetRangeChoices(wxArrayString *pChoices, wxArrayString *pCodes)
 {
@@ -231,7 +229,7 @@ wxString GUIPrefs::HelpPageName()
    return "Interface_Preferences";
 }
 
-PrefsPanel *GUIPrefsFactory::operator () (wxWindow *parent, wxWindowID winid)
+PrefsPanel *GUIPrefsFactory::operator () (wxWindow *parent, wxWindowID winid) const
 {
    wxASSERT(parent); // to justify safenew
    return safenew GUIPrefs(parent, winid);
