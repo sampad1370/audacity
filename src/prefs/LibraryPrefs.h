@@ -50,6 +50,6 @@ class LibraryPrefs final : public PrefsPanel
 class LibraryPrefsFactory final : public PrefsPanelFactory
 {
 public:
-   PrefsPanel *operator () (wxWindow *parent, wxWindowID winid) override;
+   PrefsPanel *operator () (wxWindow *parent, wxWindowID winid) const override;
 };
 #endif

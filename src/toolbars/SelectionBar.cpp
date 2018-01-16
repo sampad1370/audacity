@@ -150,9 +150,7 @@ SelectionBar::SelectionBar()
    mSelectionMode = gPrefs->ReadLong(wxT("/SelectionToolbarMode"),  0);
 }
 
-SelectionBar::~SelectionBar()
-{
-}
+SelectionBar::~SelectionBar() = default;
 
 void SelectionBar::Create(wxWindow * parent)
 {
