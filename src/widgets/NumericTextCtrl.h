@@ -106,10 +106,10 @@ public:
 
    int GetFormatIndex();
 
-   int GetNumBuiltins();
-   NumericFormatId GetBuiltinName(const int index);
-   wxString GetBuiltinFormat(const int index);
-   wxString GetBuiltinFormat(const NumericFormatId & name);
+   int GetNumBuiltins() const;
+   NumericFormatId GetBuiltinName(const int index) const;
+   wxString GetBuiltinFormat(const int index) const;
+   wxString GetBuiltinFormat(const NumericFormatId & name) const;
 
    // Adjust the value by the number "steps" in the active format.
    // Increment if "dir" is 1, decrement if "dir" is -1.

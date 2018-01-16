@@ -413,7 +413,7 @@ wxString DevicePrefs::HelpPageName()
    return "Devices_Preferences";
 }
 
-PrefsPanel *DevicePrefsFactory::operator () (wxWindow *parent, wxWindowID winid)
+PrefsPanel *DevicePrefsFactory::operator () (wxWindow *parent, wxWindowID winid) const
 {
    wxASSERT(parent); // to justify safenew
    return safenew DevicePrefs(parent, winid);
