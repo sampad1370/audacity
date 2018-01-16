@@ -221,7 +221,10 @@ void ToolBarResizer::OnMotion( wxMouseEvent & event )
 
       // Adjust the size by the difference between the
       // last mouse and current mouse positions.
-      r.width += ( pos.x - mResizeStart.x );
+      if (GetLayoutDirection() == wxLayout_RightToLeft)
+         r.width += ( mResizeStart.x - pos.x );
+      else
+         r.width += ( pos.x - mResizeStart.x );
 
       // Constrain
       if( r.width < msz.x )
