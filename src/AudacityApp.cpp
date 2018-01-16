@@ -1482,9 +1482,15 @@ bool AudacityApp::OnInit()
    }
 
    // BG: Create a temporary window to set as the top window
-   wxImage logoimage((const char **)AudacityLogoWithName_xpm);
+   wxImage logoimage(AudacityLogoWithName_xpm);
    logoimage.Rescale(logoimage.GetWidth() / 2, logoimage.GetHeight() / 2);
-   wxBitmap logo(logoimage);
+
+   // Setting the wxSplashScreen's layout direction doesn't work, possibly
+   // because by the time the ctor is complete, the damage is already done.
+   if (GetLayoutDirection() == wxLayoutDirection::wxLayout_RightToLeft)
+      logoimage = logoimage.Mirror();
+
+   const wxBitmap logo(logoimage);
 
    AudacityProject *project;
    {
