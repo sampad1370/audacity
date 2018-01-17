@@ -73,7 +73,7 @@ static vector<unsigned int> CreateRootSeedVector()
 
     static atomic<int> counter;
 
-    const auto x = ++counter;
+    const auto x = counter.fetch_add(1, memory_order_relaxed);
 
     seed_data.push_back(x);
 
