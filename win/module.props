@@ -4,6 +4,7 @@
   <Import Project="wx.props" />
 
   <PropertyGroup>
+    <AudacityBuildType>module</AudacityBuildType>
     <OutDir>$(AudacityModuleOutDir)</OutDir>
     <IntDir>$(AudacityIntDir)</IntDir>
   </PropertyGroup>
