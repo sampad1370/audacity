@@ -2,7 +2,12 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup>
+    <OutDir Condition="'$(AudacityBuildType)'=='library' OR '$(AudacityBuildType)'==''">$(AudacityLibOutDir)</OutDir>
+    <OutDir Condition="'$(AudacityBuildType)'=='binary'">$(AudacityOutDir)</OutDir>
+    <OutDir Condition="'$(AudacityBuildType)'=='module'">$(AudacityModuleOutDir)</OutDir>
+    <IntDir>$(AudacityIntDir)</IntDir>
+  </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
       <StringPooling>true</StringPooling>
