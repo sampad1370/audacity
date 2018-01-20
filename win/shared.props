@@ -23,7 +23,7 @@
             d:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.12.25827\include\type_traits(16707566): error C4172: returning address of local variable or temporary
 	   <TreatSpecificWarningsAsErrors>4172;%(TreatSpecificWarningsAsErrors)</TreatSpecificWarningsAsErrors>
       -->
-      <PreprocessorDefinitions>_CRT_NONSTDC_NO_DEPRECATE;NTDDI_VERSION=$(AudacityNtddiVersion);_WIN32_WINNT=$(AudacityWin32Winnt);%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>STRICT;_CRT_NONSTDC_NO_DEPRECATE;NTDDI_VERSION=$(AudacityNtddiVersion);_WIN32_WINNT=$(AudacityWin32Winnt);%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <EnableEnhancedInstructionSet Condition="'$(AudacityEnhancedInstructionSet)'!=''">$(AudacityEnhancedInstructionSet)</EnableEnhancedInstructionSet>
       <ConformanceMode>$(AudacityConformanceMode)</ConformanceMode>
       <LanguageStandard>$(AudacityLanguageStandard)</LanguageStandard>
