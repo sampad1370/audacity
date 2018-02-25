@@ -58,7 +58,7 @@ void CommandMessageTarget::EndStruct(){
 void CommandMessageTarget::AddItem(const wxString &value, const wxString &name){
    wxString Padding;
    Padding.Pad( mCounts.GetCount() *2 -2);
-   Padding = (( value.length() < 15 ) || (mCounts.Last()<=0))  ? "" : wxString("\n") + Padding;
+   Padding = (( value.length() < 15 ) || (mCounts.Last()<=0))  ? wxString() : wxString("\n") + Padding;
    if( name.IsEmpty() )
       Update( wxString::Format( "%s%s\"%s\"", (mCounts.Last()>0)?", ":"", Padding, Escaped(value)));
    else
