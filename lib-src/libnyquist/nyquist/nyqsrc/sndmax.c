@@ -18,6 +18,15 @@
 #include "sndmax.h"
 #include "extern.h"
 
+#if defined(_M_FP_FAST) && defined(_MSC_FULL_VER) && _MSC_FULL_VER >= 191326128
+// https://developercommunity.visualstudio.com/content/problem/209359/ice-with-fpfast-in-156-and-msvc-daily-1413263051-p.html
+#define MSC_FP_FAST_BUG_DISABLE_OPTIMIZE
+#endif
+
+#ifdef MSC_FP_FAST_BUG_DISABLE_OPTIMIZE
+#pragma optimize( "", off )
+#endif
+
 double sound_max(LVAL snd_expr, long n)
 {
     LVAL s_as_lval;
@@ -70,4 +79,7 @@ double sound_max(LVAL snd_expr, long n)
     return fabs(maximum * s->scale);
 }
 
+#if defined(MSC_FP_FAST_BUG_DISABLE_OPTIMIZE)
+#pragma optimize( "", on )
+#endif
 
