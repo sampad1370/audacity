@@ -81,6 +81,14 @@ long snd_length(sound_type s, long len)
     return total;
 }
 
+#if defined(_M_FP_FAST) && defined(_MSC_FULL_VER) && _MSC_FULL_VER >= 191326128
+// https://developercommunity.visualstudio.com/content/problem/209359/ice-with-fpfast-in-156-and-msvc-daily-1413263051-p.html
+#define MSC_FP_FAST_BUG_DISABLE_OPTIMIZE
+#endif
+
+#ifdef MSC_FP_FAST_BUG_DISABLE_OPTIMIZE
+#pragma optimize( "", off )
+#endif
 
 /* snd_maxsamp -- compute the maximum value of samples in s */
 /**/
@@ -105,6 +113,10 @@ double snd_maxsamp(sound_type s)
     }
     return (double) (s->scale * result);
 }
+
+#if defined(MSC_FP_FAST_BUG_DISABLE_OPTIMIZE)
+#pragma optimize( "", on )
+#endif
 
 
 /* snd_samples -- convert sound (prefix) to lisp array */
