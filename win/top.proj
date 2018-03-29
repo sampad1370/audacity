@@ -20,7 +20,7 @@
     <ProjectPropertiesWx Condition="'$(DllExport)' == 'false'">ForceDllExport=false;$(ProjectPropertiesWx)</ProjectPropertiesWx>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReferencesWx Include="$(WXWIN)\build/msw/wx_vc12.sln">
+    <ProjectReferencesWx Include="$(WXWIN)\build/msw/wx_vc15.sln">
       <Properties>$(ProjectPropertiesWx)</Properties>
     </ProjectReferencesWx>
     <wxTargets Include="_custom_build" />
