@@ -1,3 +1,6 @@
 [submodule "external/wxWidgets"]
 	path = external/wxWidgets
 	url = https://github.com/henricj/wxWidgets.git
+[submodule "external/lame"]
+	path = external/lame
+	url = https://github.com/henricj/lame.git
