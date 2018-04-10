@@ -72,6 +72,5 @@
     <AudacityNtddiVersion Condition="'$(AudacityPlatformPostfix)' == '_xp'">NTDDI_WINXPSP2</AudacityNtddiVersion>
     <AudacityWin32Winnt Condition="'$(AudacityPlatformPostfix)' == '_xp'">_WIN32_WINNT_WINXP</AudacityWin32Winnt>
 
-    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
   </PropertyGroup>
 </Project>
