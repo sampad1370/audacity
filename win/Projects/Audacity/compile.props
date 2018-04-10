@@ -5,12 +5,27 @@
   <ItemDefinitionGroup>
     <ClCompile>
       <AdditionalIncludeDirectories>$(AudacityHeaderDirs);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..;..\..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>TARGET_PLATFORM_DISPLAY_NAME="$(TargetPlatformDisplayName)";RUNTIME_LIBRARY_VERSION_NAME="%(RuntimeLibrary)";$(AudacityDllApi);BUILDING_AUDACITY;FLAC__NO_DLL;XML_STATIC;__STDC_CONSTANT_MACROS;WXINTL_NO_GETTEXT_MACRO;STRICT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <WarningLevel>Level4</WarningLevel>
+      <DiagnosticsFormat>Caret</DiagnosticsFormat>
+      <PrecompiledHeaderFile>AudacityHeaders.h</PrecompiledHeaderFile>
+      <ForcedIncludeFiles>AudacityHeaders.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <DisableSpecificWarnings>4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <AdditionalOptions>/Zm150 %(AdditionalOptions)</AdditionalOptions>
+      <TreatSpecificWarningsAsErrors>4477;4701;4703;4716;%(TreatSpecificWarningsAsErrors)</TreatSpecificWarningsAsErrors>
     </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0809</Culture>
+      <AdditionalIncludeDirectories>$(MSBuildProjectDirectory)\..\..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
     <Link>
       <AdditionalDependencies>$(AudacityLibs);%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(AudacityLibOutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalLibraryDirectories Condition="'$(Configuration)'=='$(Debug)'">$(AudacityLibDebugOutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <StackReserveSize>8388608</StackReserveSize>
     </Link>
   </ItemDefinitionGroup>
 </Project>
