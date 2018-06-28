@@ -31,7 +31,7 @@
   </PropertyGroup>
   <PropertyGroup Label="Audacity">
     <!-- Only enable XP support for 32-bit release builds. -->
-    <AudacityPlatformPostfix Condition="'$(Platform)'=='Win32' And '$(DesignTimeBuild)' == ''">_xp</AudacityPlatformPostfix>
+    <!-- <AudacityPlatformPostfix Condition="'$(Platform)'=='Win32' And '$(DesignTimeBuild)' == ''">_xp</AudacityPlatformPostfix> -->
     <AudacityPlatformToolset>$(AudacityBasePlatformToolset)$(AudacityPlatformPostfix)</AudacityPlatformToolset>
 
     <!--<AudacityOutDir>$(MSBuildThisFileDirectory)$(Configuration)\</AudacityOutDir>
