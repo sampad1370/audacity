@@ -6,20 +6,17 @@ version: 2.3.0-alpha-{build}
 branches:
   only:
   - prefs
-  - stdint
-  - msc_ver
-  - post-vs2013
+  - build
   - master
 image: Visual Studio 2017
 shallow_clone: true # reduce traffic
 install:
     - 'echo #define REV_LONG "%APPVEYOR_REPO_COMMIT%" > src\RevisionIdent.h'
     - 'echo #define REV_TIME "%APPVEYOR_REPO_COMMIT_TIMESTAMP%" >> src\RevisionIdent.h'
-    # install gettext tool (only used by target "locale", which is not built at
-    # the moment due to long duration
-    - nuget install Gettext.Tools -Version 0.19.8.1 -OutputDirectory %AUDACITY_ROOT%\win\packages
+    # install gettext tool (only used by target "locale")
+    - cmd: nuget restore win\audacity.sln
     # download wxWidgets
-    - git clone --recurse-submodules --branch v3.1.1 --depth 1 https://github.com/audacity/wxWidgets.git %WXWIN%
+    - git clone --recurse-submodules --branch v3.1.1 --depth 1 --jobs 4 https://github.com/audacity/wxWidgets.git %WXWIN%
     # build wxWidgets
     - msbuild /m %WXWIN%\build\msw\wx_vc15.sln "/p:Configuration=DLL Release;Platform=Win32;PreferredToolArchitecture=x64;WindowsTargetPlatformVersion=10.0.17134.0;PlatformToolset=v141;WholeProgramOptimization=true" /target:adv,base,core,html,net,qa,wxexpat,wxjpeg,wxpng,wxtiff,wxzlib,xml /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
 environment:
@@ -33,7 +30,7 @@ environment:
     #- Release
 build_script: # build all targets except `help`
 - cmd: >-
-    msbuild /m win/audacity.sln /p:Configuration=Release;Platform=Win32;PreferredToolArchitecture=x64;WindowsTargetPlatformVersion=10.0.17134.0;PlatformToolset=v141;WholeProgramOptimization=true /target:expat,filedialog,libflac++,libflac,libid3tag,libmad,libnyquist,libogg,libscorealign,libsndfile,libsoxr,libvamp,libvorbis,lv2,portaudio-v19,portmidi,portmixer,portsmf,sbsms,soundtouch,twolame,Audacity /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" &&
+    msbuild /m win/audacity.sln /p:Configuration=Release;Platform=Win32;PreferredToolArchitecture=x64;WindowsTargetPlatformVersion=10.0.17134.0;PlatformToolset=v141;WholeProgramOptimization=true /target:expat,filedialog,libflac++,libflac,libid3tag,libmad,libnyquist,libogg,libscorealign,libsndfile,libsoxr,libvamp,libvorbis,locale,lv2,portaudio-v19,portmidi,portmixer,portsmf,sbsms,soundtouch,twolame,Audacity /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" &&
     del /S win\Release\*.ipdb &&
     del /S win\Release\*.iobj &&
     del /S win\Release\*.lib &&
