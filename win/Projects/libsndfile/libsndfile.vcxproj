@@ -105,7 +105,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>.;..\..\..\lib-src\libsndfile\include;..\..\..\lib-src\libsndfile\src;..\..\..\lib-src\ffmpeg\win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..\..\..\lib-src\libsndfile\include;..\..\..\lib-src\libsndfile\src;..\..\..\lib-src\ffmpeg\win32;%(AdditionalIncludeDirectories);$(WXWIN)\lib\vc_x64_lib\mswud;$(WXWIN)\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_LIB;inline=__inline;LIBSNDFILE_PRIVATE_CONFIG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>
       </PrecompiledHeader>

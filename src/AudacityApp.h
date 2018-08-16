@@ -55,6 +55,7 @@ DECLARE_EXPORTED_EVENT_TYPE(AUDACITY_DLL_API, EVT_OPEN_AUDIO_FILE, -1);
 
 class BlockFile;
 class AliasBlockFile;
+class MatlabWrapper;
 
 class AudacityApp final : public wxApp {
  public:
@@ -190,6 +191,7 @@ class AudacityApp final : public wxApp {
    wxString             m_LastMissingBlockFilePath;
 
    ODLock               m_LastMissingBlockFileLock;
+   MatlabWrapper*       m_matlabWrapper = nullptr;
 
    void InitCommandHandler();
 

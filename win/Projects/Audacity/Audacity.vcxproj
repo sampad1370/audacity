@@ -119,6 +119,13 @@
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\..;..\..\..\include;%(AdditionalIncludeDirectories);$(WXWIN)\lib\vc_x64_lib\mswud;$(WXWIN)\include;C:\Program Files\MATLAB\MATLAB Runtime\v91\extern\include</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(AudacityWxLibDir)\..\vc_x64_lib;C:\Program Files\MATLAB\MATLAB Runtime\v91\extern\lib\win64\microsoft;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>mclmcrrt.lib;mclmcr.lib;libmx.lib;libmat.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\src\AboutDialog.cpp" />
@@ -189,6 +196,8 @@
     <ClCompile Include="..\..\..\src\Legacy.cpp" />
     <ClCompile Include="..\..\..\src\Lyrics.cpp" />
     <ClCompile Include="..\..\..\src\LyricsWindow.cpp" />
+    <ClCompile Include="..\..\..\src\MatlabWrapper\DynamicLibrary.cpp" />
+    <ClCompile Include="..\..\..\src\MatlabWrapper\MatlabWrapper.cpp" />
     <ClCompile Include="..\..\..\src\Matrix.cpp" />
     <ClCompile Include="..\..\..\src\Menus.cpp" />
     <ClCompile Include="..\..\..\src\Mix.cpp" />
@@ -517,6 +526,10 @@
     <ClInclude Include="..\..\..\src\import\MultiFormatReader.h" />
     <ClInclude Include="..\..\..\src\import\SpecPowerMeter.h" />
     <ClInclude Include="..\..\..\src\InconsistencyException.h" />
+    <ClInclude Include="..\..\..\src\MatlabWrapper\config.h" />
+    <ClInclude Include="..\..\..\src\MatlabWrapper\DynamicLibrary.h" />
+    <ClInclude Include="..\..\..\src\MatlabWrapper\MatlabWrapper.h" />
+    <ClInclude Include="..\..\..\src\MatlabWrapper\matlabWrapperDefine.h" />
     <ClInclude Include="..\..\..\src\MemoryX.h" />
     <ClInclude Include="..\..\..\src\ModuleManager.h" />
     <ClInclude Include="..\..\..\src\NumberScale.h" />

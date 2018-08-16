@@ -5454,7 +5454,7 @@ void AudioIO::PlaybackSchedule::TrackTimeUpdate(double realElapsed)
          return;
       }
 
-      double total;
+      double total=0;
       bool foundTotal = false;
       do {
          auto oldTime = mTime;

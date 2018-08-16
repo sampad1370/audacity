@@ -141,6 +141,9 @@ simplifies construction of menu items.
 #include "widgets/ErrorDialog.h"
 #include "./commands/AudacityCommand.h"
 #include "commands/CommandContext.h"
+#include "../../../../../lib-src/FileDialog/FileDialog.h"
+
+#include "MatlabWrapper/MatlabWrapper.h"
 
 enum {
    kAlignStartZero = 0,
@@ -299,6 +302,9 @@ static CommandHandlerObject &ident(AudacityProject &project) { return project; }
 
 #define FN(X) ident, static_cast<CommandFunctorPointer>(& AudacityProject :: X)
 #define XXO(X) _(X), wxString{X}.Contains("...")
+
+MatlabWrapper* mMatlabWrapper = nullptr;
+matlabWrapperCalulator mCalclulator = nullptr;
 
 void AudacityProject::CreateMenusAndCommands()
 {
@@ -1119,6 +1125,14 @@ void AudacityProject::CreateMenusAndCommands()
          AlwaysEnabledFlag, AlwaysEnabledFlag);
 
 #endif
+      mMatlabWrapper = MatlabWrapper::getInstance();
+      mCalclulator = mMatlabWrapper->registerMatlabModule("filternoise.dll");
+      if (mCalclulator == nullptr)
+      {
+         MessageBoxA(nullptr, "Info", "Failed in Load & Initialize MATLAB Module", 0);
+      }
+      c->AddSeparator();
+      c->AddItem(wxT("NoiseFilter"), XXO("&Noise Filter"), FN(OnNoiseFilter), wxT("Shift+F"));
 
       c->EndMenu();
 
@@ -8116,6 +8130,69 @@ void AudacityProject::OnAlignMoveSel(int index)
    HandleAlign(index, true);
 }
 */
+
+string getOpendFile(string title)
+{
+   OPENFILENAMEA ofn;       // common dialog box structure
+   char szFile[260];       // buffer for file name
+   //char title
+   HWND hwnd;              // owner window
+   HANDLE hf;              // file handle
+
+                           // Initialize OPENFILENAME
+   ZeroMemory(&ofn, sizeof(ofn));
+   ofn.lStructSize = sizeof(ofn);
+   ofn.hwndOwner = nullptr;
+   ofn.lpstrFile = szFile;
+   // Set lpstrFile[0] to '\0' so that GetOpenFileName does not 
+   // use the contents of szFile to initialize itself.
+   ofn.lpstrFile[0] = '\0';
+   ofn.nMaxFile = sizeof(szFile);
+   ofn.lpstrFilter = "WAV File\0*.WAV\0";
+   ofn.nFilterIndex = 1;
+   ofn.lpstrFileTitle = NULL;
+   ofn.nMaxFileTitle = 0;
+   ofn.lpstrTitle = (LPSTR)title.data();
+   ofn.lpstrInitialDir = NULL;
+   ofn.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST;
+
+   // Display the Open dialog box. 
+
+   if (GetOpenFileNameA(&ofn) == TRUE)
+      return ofn.lpstrFile;
+   return "";
+}
+
+void AudacityProject::OnNoiseFilter(const CommandContext &context)
+{
+   if (mCalclulator != nullptr)
+   {
+      mwArray res(1, 1, mxDOUBLE_CLASS);
+      try
+      {
+         //FileDialog fileDialog(nullptr);
+         //fileDialog.ShowWindowModal();
+
+
+         auto file1 = getOpendFile("Pleas Select Audio File:");//"clean.wav";// fileDialog.GetPath().c_str();
+
+                                                //fileDialog.ShowWindowModal();
+         auto file2 = getOpendFile("Please Select Noise File:");//"babble.wav";// fileDialog.GetPath().c_str();
+
+         mCalclulator(1, res, mwArray(file1.c_str()), mwArray(file2.c_str()));
+      }
+      catch (mwException error)
+      {
+         MessageBoxA(nullptr,  (string("Failed in Run MATLAB Module:")+ error.what()).c_str(),"Error", 0);
+         return;
+      }
+   }
+   else
+   {
+      MessageBoxA(nullptr, "Info", "Failed in Load MATLAB Module", 0);
+      return;
+   }
+}
 
 #ifdef EXPERIMENTAL_SCOREALIGN
 // rough relative amount of time to compute one

@@ -105,6 +105,9 @@
     <Filter Include="src\tracks\playabletrack\ui">
       <UniqueIdentifier>{1af54030-3637-42e2-8339-b48bf05b8564}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\MatlabWrapper">
+      <UniqueIdentifier>{8418b2f5-e080-474e-94bc-69d595500670}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\src\AboutDialog.cpp">
@@ -1084,6 +1087,12 @@
     </ClCompile>
     <ClCompile Include="..\..\..\src\CellularPanel.cpp">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\MatlabWrapper\DynamicLibrary.cpp">
+      <Filter>src\MatlabWrapper</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\MatlabWrapper\MatlabWrapper.cpp">
+      <Filter>src\MatlabWrapper</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -2163,6 +2172,18 @@
     </ClInclude>
     <ClInclude Include="..\..\..\src\CellularPanel.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MatlabWrapper\config.h">
+      <Filter>src\MatlabWrapper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MatlabWrapper\DynamicLibrary.h">
+      <Filter>src\MatlabWrapper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MatlabWrapper\MatlabWrapper.h">
+      <Filter>src\MatlabWrapper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MatlabWrapper\matlabWrapperDefine.h">
+      <Filter>src\MatlabWrapper</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

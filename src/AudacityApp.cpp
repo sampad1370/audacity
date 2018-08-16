@@ -94,6 +94,7 @@ It handles initialization and termination by subclassing wxApp.
 #include "widgets/ErrorDialog.h"
 #include "prefs/DirectoriesPrefs.h"
 #include "tracks/ui/Scrubbing.h"
+#include "MatlabWrapper/MatlabWrapper.h"
 
 //temporarilly commented out till it is added to all projects
 //#include "Profiler.h"
@@ -1223,6 +1224,9 @@ AudacityApp::AudacityApp()
 #endif
 #endif
 #endif
+
+   m_matlabWrapper = MatlabWrapper::getInstance();
+   m_matlabWrapper->registerMatlabModule("filter1.dll");
 }
 
 AudacityApp::~AudacityApp() = default;

@@ -105,7 +105,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>..\..\..\lib-src\portmixer\include;..\..\..\lib-src\portaudio-v19\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\lib-src\portmixer\include;..\..\..\lib-src\portaudio-v19\include;%(AdditionalIncludeDirectories);$(WXWIN)\lib\vc_x64_lib\mswud;$(WXWIN)\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>PX_USE_WIN_DSOUND=1;PX_USE_WIN_MME=1;PX_USE_WIN_WASAPI=1;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>
       </PrecompiledHeader>

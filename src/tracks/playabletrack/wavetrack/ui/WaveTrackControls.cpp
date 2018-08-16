@@ -31,6 +31,7 @@ Paul Licameli split from TrackPanel.cpp
 #include "../../../../prefs/WaveformPrefs.h"
 #include "../../../../widgets/ErrorDialog.h"
 
+
 #include <wx/combobox.h>
 
 namespace
@@ -129,6 +130,8 @@ enum {
    OnSwapChannelsID,
    OnSplitStereoID,
    OnSplitStereoMonoID,
+
+   OnFilterNoiseID,
 
    ChannelMenuID,
 };
@@ -549,9 +552,14 @@ class WaveTrackMenuTable : public PopupMenuTable
 public:
    static WaveTrackMenuTable &Instance( Track * pTrack);
    Track * mpTrack;
+  
 
 protected:
-   WaveTrackMenuTable() : mpData(NULL) {mpTrack=NULL;}
+   WaveTrackMenuTable() : mpData(NULL)
+   {
+      mpTrack=NULL;
+      
+   }
 
    void InitMenu(Menu *pMenu, void *pUserData) override;
 
@@ -692,7 +700,6 @@ BEGIN_POPUP_MENU(WaveTrackMenuTable)
 #ifndef EXPERIMENTAL_DA
    POPUP_MENU_ITEM(OnSplitStereoMonoID, _("Split Stereo to Mo&no"), OnSplitStereoMono)
 #endif
-
    WaveTrack *const pTrack = static_cast<WaveTrack*>(mpTrack);
    if( pTrack && pTrack->GetDisplay() != WaveTrack::Spectrum  ){
       POPUP_MENU_SEPARATOR()

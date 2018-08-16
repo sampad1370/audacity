@@ -414,7 +414,7 @@ bool EffectNormalize::AnalyseTrack(const WaveTrack * track, const wxString &msg,
                                    double &progress, float &offset, float &extent)
 {
    bool result = true;
-   float min, max;
+   float min=0, max=0;
 
    if(mGain)
    {

@@ -119,7 +119,7 @@
       </Command>
     </PreBuildEvent>
     <ClCompile>
-      <AdditionalIncludeDirectories>..\..\..\lib-src\libnyquist;..\..\..\lib-src\libnyquist\nyquist;..\..\..\lib-src\libnyquist\nyquist\cmt;..\..\..\lib-src\libnyquist\nyquist\ffts\src;..\..\..\lib-src\libnyquist\nyquist\nyqsrc;..\..\..\lib-src\libnyquist\nyquist\nyqstk;..\..\..\lib-src\libnyquist\nyquist\nyqstk\include;..\..\..\lib-src\libnyquist\nyquist\snd;..\..\..\lib-src\libnyquist\nyquist\tran;..\..\..\lib-src\libnyquist\nyquist\sys\win\msvc;..\..\..\lib-src\libnyquist\nyquist\xlisp;..\..\..\lib-src\libnyquist\nyquist\win;..\libsndfile;..\..\..\lib-src\portaudio-v19\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\lib-src\libnyquist;..\..\..\lib-src\libnyquist\nyquist;..\..\..\lib-src\libnyquist\nyquist\cmt;..\..\..\lib-src\libnyquist\nyquist\ffts\src;..\..\..\lib-src\libnyquist\nyquist\nyqsrc;..\..\..\lib-src\libnyquist\nyquist\nyqstk;..\..\..\lib-src\libnyquist\nyquist\nyqstk\include;..\..\..\lib-src\libnyquist\nyquist\snd;..\..\..\lib-src\libnyquist\nyquist\tran;..\..\..\lib-src\libnyquist\nyquist\sys\win\msvc;..\..\..\lib-src\libnyquist\nyquist\xlisp;..\..\..\lib-src\libnyquist\nyquist\win;..\libsndfile;..\..\..\lib-src\portaudio-v19\include;%(AdditionalIncludeDirectories);$(WXWIN)\lib\vc_x64_lib\mswud;$(WXWIN)\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_NONSTDC_NO_WARNINGS;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>
       </PrecompiledHeader>
